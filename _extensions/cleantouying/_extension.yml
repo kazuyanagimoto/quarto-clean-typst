@@ -6,6 +6,7 @@ contributes:
   formats:
     typst:
       template-partials:
+        - clean.typ
         - typst-template.typ
         - typst-show.typ
 
