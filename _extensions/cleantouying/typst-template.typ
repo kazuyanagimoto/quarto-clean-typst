@@ -23,11 +23,10 @@
     self: s,
     title: title,
     subtitle: subtitle,
-    author: [Author],
-    date: date,
-    institution: [Institution],
+    authors: authors,
+    date: date
   )
-  let (init, slides) = utils.methods(s)
+  let (init, slides, alert) = utils.methods(s)
   show: init
 
   let (slide, empty-slide, title-slide) = utils.slides(s)

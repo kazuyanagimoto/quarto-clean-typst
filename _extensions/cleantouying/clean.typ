@@ -1,4 +1,5 @@
 #import "@preview/touying:0.4.2": *
+#import "@preview/fontawesome:0.3.0": *
 
 #let slide(self: none, title: auto, ..args) = {
   if title != auto {
@@ -24,11 +25,30 @@
     )
 
     set text(fill: self.colors.neutral-darkest)
-    if info.author != none {
-      block(
-        info.author
+
+    if info.authors != none {
+      let count = info.authors.len()
+      let ncols = calc.min(count, 3)
+      grid(
+        columns: (1fr,) * ncols,
+        row-gutter: 1.5em,
+        ..info.authors.map(author =>
+            align(left)[
+              #text(size: 1.2em, weight: "medium")[#author.name]
+              #text(size: 0.7em, fill: rgb("a6ce39"))[
+                #if author.orcid != [] {
+                  link("https://orcid.org/" + author.orcid.text)[#fa-orcid()]
+                }
+              ] \
+              #text(size: 0.7em, style: "italic")[
+                #link("mailto:" + author.email.children.map(email => email.text).join())[#author.email]
+              ] \
+              #text(size: 0.85em, style: "italic")[#author.affiliation]
+            ]
+        )
       )
     }
+
     if info.date != none {
       block(if type(info.date) == datetime { info.date.display(self.datetime-format) } else { info.date })
     }
@@ -67,7 +87,7 @@
   // set page
   let header(self) = {
     set align(top)
-    show: components.cell.with(inset: 1.5em)
+    show: components.cell.with(inset: (x: 2.5em, y: 1.5em))
     set text(
       size: 2em,
       fill: self.colors.primary,
@@ -88,19 +108,60 @@
     paper: "presentation-" + aspect-ratio,
     header: header,
     footer: footer,
-    margin: (top: 4em, bottom: 1.5em, x: 2em),
+    margin: (top: 4em, bottom: 1.5em, x: 3em),
   )
+
   // register methods
   self.methods.slide = slide
   self.methods.title-slide = title-slide
   self.methods.slides = slides
-  self.methods.alert = (self: none, it) => text(fill: self.colors.primary, it)
+  self.methods.alert = (self: none, it) => text(fill: self.colors.secondary, it)
   self.methods.init = (self: none, body) => {
     set text(
       size: 16pt,
       font: font-text,
     )
+
+    show heading.where(level: 3): set text(
+      size: 1.2em,
+      fill: self.colors.primary,
+      font: font-text,
+      weight: "light",
+      style: "italic",
+    )
+
+    // Set Unordered List
+    set list(
+      indent: 1em,
+      marker: (text(fill: self.colors.primary)[ $circle.filled.small$ ],
+               text(fill: self.colors.primary)[$arrow.r$]),
+    )
+    // Set Ordered List
+    set enum(
+      indent: 1em,
+      full: true, // necessary to receive all numbers at once, so we can know which level we are at
+      numbering: (..nums) => {
+        let nums = nums.pos()
+        let num = nums.last()
+        let level = nums.len()
+
+        // format for current level
+        let format = ("1.", "i.", "a.").at(calc.min(2, level - 1))
+        let result = numbering(format, num)
+        text(fill: self.colors.primary, result)
+      }
+    )
+
+    // Set Alerts
+    set highlight(
+      fill: self.colors.secondary,
+      extent: 2pt,
+      radius: 2pt,
+    )
+
     body
   }
+  
+
   self
 }

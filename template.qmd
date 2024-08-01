@@ -4,14 +4,10 @@ subtitle: A Minimalistic Theme for Quarto + Typst + Touying
 date: today
 date-format: long
 author:
-  - name: Grant McDermott
-    orcid: 0000-0001-7883-8573
-    email: gmcd@amazon.com
-    affiliations: Amazon.com
-  - name: Kyle Butts
-    orcid: 0000-0002-9048-8059
-    email: kyle.butts@colorado.edu
-    affiliations: UC Boulder
+  - name: Kazuharu Yanagimoto
+    orcid: 0009-0007-1967-8304
+    email: kazuharu.yanagimoto@cemfi.edu.es
+    affiliations: CEMFI
 format:
   cleantouying-typst:
     keep-typ: true
@@ -21,7 +17,7 @@ format:
 
 # aiueo
 
-## Example slide
+## Example Slide
 
 ### This is a subtitle
 
@@ -36,3 +32,42 @@ Next, we'll brief review some theme-specific components.
 - Note that _all_ of the standard Reveal.js
 [features](https://quarto.org/docs/presentations/revealjs/)
 can be used with this theme, even if we don't highlight them here.
+
+
+# Components {background-color="#40666e"}
+
+## Components
+
+### Ordered & Unordered Lists
+
+Here we have an unordered list.
+
+- first item
+    - sub-item
+- second item
+
+And next we have an ordered one.
+
+1. first item
+    1. sub-item
+1. second item
+
+## Components
+
+### Alerts & Cross-refs
+
+To emphasize specific words or text, you can:
+
+- Use the default `.alert` class, e.g. [important note]{.alert}.
+- Use the `.fg` class for custom color, e.g. [important note]{.fg}.
+- Use the `.bg` class for custom background, e.g. [important note]{.bg}.
+
+```{=typst}
+
+== Temp
+
+
+#highlight[Aiueo]
+
+
+```

@@ -3,6 +3,8 @@ author: Kazuharu Yanagimoto
 version: 1.0.0
 quarto-required: ">=1.5.0"
 contributes:
+  filters:
+    - clean-touying.lua
   formats:
     typst:
       template-partials:
