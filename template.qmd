@@ -1,6 +1,6 @@
 ---
 title: Quarto Touying Clean
-subtitle: A Minimalistic Theme for Quarto + Typst
+subtitle: A Minimalistic Theme for Quarto + Typst + Touying
 date: today
 date-format: long
 author:
@@ -9,7 +9,7 @@ author:
     email: kazuharu.yanagimoto@cemfi.edu.es
     affiliations: CEMFI
 format:
-  cleanslides-typst:
+  cleantouying-typst:
     keep-typ: true
     mainfont: Montserrat
     sansfont: Josefin Sans
@@ -71,3 +71,10 @@ To emphasize specific words or text, you can:
 
 
 ```
+
+
+
+## Typst CSS{#sec-typst-css}
+
+[aiueo]{style="color: red"}
+

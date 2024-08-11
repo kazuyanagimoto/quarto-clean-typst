@@ -1,4 +1,4 @@
-#show: doc => slides(
+#show: doc => article(
 $if(title)$
   title: [$title$],
 $endif$

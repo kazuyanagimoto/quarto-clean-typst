@@ -21,14 +21,12 @@
   let color-accent1 = rgb(accent.text)
   let color-accent2 = rgb(accent2.text)
 
-	let margin = (x: 1.5em, y :1.5em);
-
 	set document(
 		title: title,
 	)
 	set text(
     lang: lang,
-    region: "US",
+    region: region,
 		font: font-text,
     size: 18pt,
     fill: rgb("#272822")
