@@ -20,20 +20,29 @@ $endif$
 $if(date)$
   date: [$date$],
 $endif$
-$if(font-haeding)$
-  font-heading: [$font-heading$],
+$if(lang)$
+  lang: "$lang$",
 $endif$
-$if(font-text)$
-  font-text: [$font-text$],
+$if(region)$
+  region: "$region$",
 $endif$
-$if(font-monospace)$
-  font-monospace: [$font-monospace$],
+$if(margin)$
+  margin: ($for(margin/pairs)$$margin.key$: $margin.value$,$endfor$),
 $endif$
-$if(color-accent1)$
-  color-accent1: $color-accent1$,
+$if(mainfont)$
+  mainfont: ("$mainfont$",),
 $endif$
-$if(color-accent2)$
-  color-accent2: $color-accent2$,
+$if(sansfont)$
+  sansfont: ("$sansfont$",),
+$endif$
+$if(fontsize)$
+  fontsize: $fontsize$,
+$endif$
+$if(accent)$
+  accent: [$accent$],
+$endif$
+$if(accent2)$
+  accent2: [$accent2$],
 $endif$
   doc,
 )

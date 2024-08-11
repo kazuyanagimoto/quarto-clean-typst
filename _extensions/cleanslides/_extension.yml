@@ -4,11 +4,10 @@ version: 1.0.0
 quarto-required: ">=1.5.0"
 contributes:
   filters:
-    - clean-touying.lua
+    - cleanslides.lua
   formats:
     typst:
       template-partials:
-        - clean.typ
         - typst-template.typ
         - typst-show.typ
 
