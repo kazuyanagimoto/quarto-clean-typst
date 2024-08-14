@@ -1,6 +1,7 @@
 #import "@preview/touying:0.4.2": *
 #import "@preview/fontawesome:0.3.0": *
 
+
 #let slide(self: none, title: auto, ..args) = {
   if title != auto {
     self.clean-title = title
@@ -35,11 +36,10 @@
         ..info.authors.map(author =>
             align(left)[
               #text(size: 1.2em, weight: "medium")[#author.name]
-              #text(size: 0.7em, fill: rgb("a6ce39"))[
-                #if author.orcid != [] {
-                  link("https://orcid.org/" + author.orcid.text)[#fa-orcid()]
-                }
-              ] \
+              #if author.orcid != [] {
+                show link: set text(size: 0.7em, fill: rgb("a6ce39"))
+                link("https://orcid.org/" + author.orcid.text)[#fa-orcid()]
+              } \
               #text(size: 0.7em, style: "italic")[
                 #link("mailto:" + author.email.children.map(email => email.text).join())[#author.email]
               ] \
@@ -83,14 +83,18 @@
   (self.methods.touying-slides)(self: self, slide-level: slide-level, ..args)
 }
 
-#let button(body, fill: rgb("009f8c")) = {
-  block(inset: 5pt, radius: 6pt, fill: fill)[
+// Components
+#let button(self: none, body) = {
+  box(inset: 5pt, radius: 6pt, fill: self.colors.primary)[
     #set text(size: 0.6em, fill: white)
     #sym.triangle.filled.r
     #body
   ]
 }
 
+//------------------------------------------------------------------------------
+// Register
+//------------------------------------------------------------------------------
 #let register(
   self: themes.default.register(),
   aspect-ratio: "16-9",
@@ -145,8 +149,18 @@
   self.methods.focus-slide = focus-slide
   self.methods.slides = slides
   self.methods.alert = (self: none, it) => text(fill: self.colors.primary, it)
+  self.methods.fg = (self: none, it) => text(fill: self.colors.secondary, it)
+  self.methods.bg = (self: none, it) => highlight(
+    fill: self.colors.primary,
+    radius: 1pt,
+    extent: 0.1em,
+    it
+  )
+  self.methods.button = button
+
   self.methods.init = (self: none, body) => {
     set text(size: font-size, font: font-body)
+    show link: set text(fill: self.colors.secondary)
     // Unordered List
     set list(
       indent: 1em,
@@ -179,6 +193,9 @@
       )
       block(inset: (bottom: 0em))[#title]
     }
+
+    set bibliography(title: none)
+
     body
   }
   self

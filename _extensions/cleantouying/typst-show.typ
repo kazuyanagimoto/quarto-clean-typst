@@ -43,10 +43,9 @@
     $endif$
 )
 
-#let (init, slides, touying-outline, alert, speaker-note) = utils.methods(s)
+#(s.enable-styled-warning = false)
+#let (init, slides, touying-outline, alert, speaker-note, fg, bg, button) = utils.methods(s)
 #show: init
-
-#show strong: alert
 
 #let (slide, empty-slide, title-slide, focus-slide) = utils.slides(s)
 #show: slides

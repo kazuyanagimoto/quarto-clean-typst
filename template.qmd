@@ -15,6 +15,8 @@ format:
     sansfont: Josefin Sans
     accent: 009F8C
     accent2: B75C9D
+    bibliographystyle: "chicago-author-date"
+bibliography: [references.bib]
 ---
 
 ## Example Slide
@@ -54,27 +56,64 @@ And next we have an ordered one.
 
 ## Components
 
-### Alerts & Cross-refs
+### Alerts & Cross-refs {#sec-crossref}
 
 To emphasize specific words or text, you can:
 
-- Use the default `.alert` class, e.g. [important note]{.alert}.
-- Use the `.fg` class for custom color, e.g. [important note]{.fg}.
-- Use the `.bg` class for custom background, e.g. [important note]{.bg}.
+- Use the default `.alert` class, e.g. [important note]{.alert}
+- Use the `.fg` class for custom color, e.g. [important note]{.fg}
+- Use the `.bg` class for custom background, e.g. [important note]{.bg}
 
-```{=typst}
+To cross-reference, you have several options, for example:
 
-== Temp
+- Beamer-like .button class provided by this theme, e.g. [[Appendix]{.button}](#appendix)
+- However, the heading cross-refs is not supported, see [Appendix](#appendix)
+
+## Components
+
+### Citations
+
+Citations follow the standard
+[Quarto format](https://quarto.org/docs/authoring/footnotes-and-citations.html#citations)
+and be sourced from BibLaTeX, BibTeX, or CLS files. For example:
+
+ - [Topic 1:]{.alert} Spatial Frictions [@Fajgelbaum_Morales_Serrato_Zidar_2018; @Hsieh_Moretti_2019; @Moretti_2011]
+
+- [Topic 2:]{.alert} Blah [@Suárez_Serrato_Zidar_2016]
+
+## Components
+
+### Blocks
+
+Quarto provides
+[dedicated environments](https://quarto.org/docs/authoring/cross-references.html#theorems-and-proofs)
+for theorems, lemmas, and so forth. 
+
+But in presentation format, it's arguably more effective just to use a
+[Callout Block](https://quarto.org/docs/authoring/callouts.html).
 
 
-#highlight[Aiueo]
+:::{.callout-note}
+## Regression Specification
+
+The main specification is as follows:
+
+$$
+y_{it} = X_{it} \beta + \mu_i + \varepsilon_{it}
+$$
+:::
 
 
-```
+
+# Appendix
 
 
+## Touying Heading Cross-refs
 
-## Typst CSS{#sec-typst-css}
+[[Back to main]{.button}](#sec-crossref)
+[appendix]{.label}
 
-[aiueo]{style="color: red"}
+## References
 
+::: {#refs}
+:::
