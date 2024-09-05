@@ -1,5 +1,5 @@
 ---
-title: Quarto Touying Clean
+title: Quarto Clean Theme
 subtitle: A Minimalistic Theme for Quarto + Typst + Touying
 date: today
 date-format: long
@@ -36,7 +36,7 @@ Next, we'll brief review some theme-specific components.
 can be used with this theme, even if we don't highlight them here.
 
 
-# Components {background-color="#40666e"}
+# Components
 
 ## Components
 
@@ -66,8 +66,8 @@ To emphasize specific words or text, you can:
 
 To cross-reference, you have several options, for example:
 
-- Beamer-like .button class provided by this theme, e.g. [[Appendix]{.button}](#appendix)
-- However, the heading cross-refs is not supported, see [Appendix](#appendix)
+- Beamer-like .button class provided by this theme, e.g. [[Appendix]{.button}](#sec-appendix)
+- However, the heading cross-refs is not supported, see [Appendix](#sec-appendix)
 
 ## Components
 
@@ -94,6 +94,7 @@ But in presentation format, it's arguably more effective just to use a
 
 
 :::{.callout-note}
+
 ## Regression Specification
 
 The main specification is as follows:
@@ -101,17 +102,17 @@ The main specification is as follows:
 $$
 y_{it} = X_{it} \beta + \mu_i + \varepsilon_{it}
 $$
+
 :::
+
 
 
 
 # Appendix
 
-
-## Touying Heading Cross-refs
+## Touying Heading Cross-refs {#sec-appendix}
 
 [[Back to main]{.button}](#sec-crossref)
-[appendix]{.label}
 
 ## References
 

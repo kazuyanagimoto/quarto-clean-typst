@@ -1,20 +1,148 @@
-#import "@preview/touying:0.4.2": *
+#import "@preview/touying:0.5.2": *
 #import "@preview/fontawesome:0.3.0": *
 
-
-#let slide(self: none, title: auto, ..args) = {
-  if title != auto {
-    self.clean-title = title
+#let new-section-slide(level: 1, title)  = touying-slide-wrapper(self => {
+  let body = {
+    set align(left + horizon)
+    set text(size: 2.5em, fill: self.colors.primary, weight: "bold")
+    title
   }
-  (self.methods.touying-slide)(self: self, ..args)
+  self = utils.merge-dicts(
+    self,
+    config-page(margin: (left: 2em, top: -0.25em)),
+  ) 
+  touying-slide(self: self, body)
+})
+
+#let slide(
+  config: (:),
+  repeat: auto,
+  setting: body => body,
+  composer: auto,
+  ..bodies,
+) = touying-slide-wrapper(self => {
+  // set page
+  let header(self) = {
+    set align(top)
+    show: components.cell.with(inset: (x: 2em, y: 1.5em))
+    set text(
+      size: 1.6em,
+      fill: self.colors.neutral-darkest,
+      weight: "bold",
+      font: self.store.font-heading,
+    )
+    utils.call-or-display(self, self.store.header)
+  }
+  let footer(self) = {
+    set align(bottom)
+    show: pad.with(.4em)
+    set text(fill: self.colors.neutral-darkest, size: .8em)
+    utils.call-or-display(self, self.store.footer)
+    h(1fr)
+    context utils.slide-counter.display() + " / " + utils.last-slide-number
+  }
+
+  // Set the slide
+  let self = utils.merge-dicts(
+    self,
+    config-page(
+      header: header,
+      footer: footer,
+    ),
+  )
+  touying-slide(self: self, config: config, repeat: repeat, setting: setting, composer: composer, ..bodies)
+})
+
+
+#let clean-theme(
+  aspect-ratio: "16-9",
+  header: utils.display-current-heading(level: 2),
+  footer: [],
+  font-heading: (),
+  font-body: (),
+  font-size: 20pt,
+  color-primary: "#009f8c",
+  color-secondary: "b75c9d",
+  ..args,
+  body,
+) = {
+  set text(size: font-size, font: font-body)
+
+  show: touying-slides.with(
+    config-page(
+      paper: "presentation-" + aspect-ratio,
+      margin: (top: 4em, bottom: 1.5em, x: 2em),
+    ),
+    config-common(
+      slide-fn: slide,
+      new-section-slide-fn: new-section-slide,
+    ),
+    config-methods(
+      init: (self: none, body) => {
+        show link: set text(fill: self.colors.secondary)
+        // Unordered List
+        set list(
+          indent: 1em,
+          marker: (text(fill: self.colors.primary)[ #sym.triangle.filled ],
+                    text(fill: self.colors.primary)[ #sym.arrow]),
+        )
+        // Ordered List
+        set enum(
+          indent: 1em,
+          full: true, // necessary to receive all numbers at once, so we can know which level we are at
+          numbering: (..nums) => {
+            let nums = nums.pos()
+            let num = nums.last()
+            let level = nums.len()
+
+            // format for current level
+            let format = ("1.", "i.", "a.").at(calc.min(2, level - 1))
+            let result = numbering(format, num)
+            text(fill: self.colors.primary, result)
+          }
+        ) 
+        // Slide Subtitle
+        show heading.where(level: 3): title => {
+          set text(
+            size: 1.1em,
+            fill: self.colors.primary,
+            font: font-body,
+            weight: "light",
+            style: "italic",
+          )
+          block(inset: (bottom: 0em))[#title]
+        }
+
+        set bibliography(title: none)
+
+        body
+      },
+      alert: utils.alert-with-primary-color,
+    ),
+    config-colors(
+      primary: rgb(color-primary),
+      secondary: rgb(color-secondary),
+      neutral-lightest: rgb("#ffffff"),
+      neutral-darkest: rgb("#272822"),
+    ),
+    // save the variables for later use
+    config-store(
+      header: header,
+      footer: footer,
+      font-heading: font-heading,
+      ..args,
+    ),
+  )
+
+  body
 }
 
-#let title-slide(self: none, ..args) = {
-  self = utils.empty-page(self)
+#let title-slide(
+  ..args,
+) = touying-slide-wrapper(self => {
   let info = self.info + args.named()
   let body = {
     set align(left + horizon)
-    show: components.cell.with(inset: 3em)
     block(
       inset: (y: 1em),
       [#text(size: 2em, fill: self.colors.neutral-darkest, weight: "bold", info.title)
@@ -43,7 +171,7 @@
               #text(size: 0.7em, style: "italic")[
                 #link("mailto:" + author.email.children.map(email => email.text).join())[#author.email]
               ] \
-              #text(size: 0.85em, style: "italic")[#author.affiliation]
+              #text(size: 0.8em, style: "italic")[#author.affiliation]
             ]
         )
       )
@@ -53,150 +181,31 @@
       block(if type(info.date) == datetime { info.date.display(self.datetime-format) } else { info.date })
     }
   }
-  (self.methods.touying-slide)(self: self, repeat: none, body)
-}
-
-#let new-section-slide(self: none, section) = {
-  self = utils.empty-page(self)
-  let body = {
-    set align(left + horizon)
-    set text(size: 2.5em, fill: self.colors.primary, weight: "bold")
-    block(inset: 1em)[#section]
-  }
-  (self.methods.touying-slide)(self: self, repeat: none, section: section, body)
-}
-
-#let focus-slide(self: none, body) = {
-  self = utils.empty-page(self)
-  self.page-args += (
-    fill: self.colors.primary,
-    margin: 2em,
+  self = utils.merge-dicts(
+    self,
+    config-common(freeze-slide-counter: true)
   )
-  set text(fill: self.colors.neutral-lightest, size: 2em)
-  (self.methods.touying-slide)(self: self, repeat: none, align(horizon + center, body))
-}
+  touying-slide(self: self, body)
+})
 
-#let slides(self: none, title-slide: true, slide-level: 1, ..args) = {
-  if title-slide {
-    (self.methods.title-slide)(self: self)
-  }
-  (self.methods.touying-slides)(self: self, slide-level: slide-level, ..args)
-}
 
-// Components
-#let button(self: none, body) = {
-  box(inset: 5pt, radius: 6pt, fill: self.colors.primary)[
-    #set text(size: 0.6em, fill: white)
-    #sym.triangle.filled.r
-    #body
-  ]
-}
 
-//------------------------------------------------------------------------------
-// Register
-//------------------------------------------------------------------------------
-#let register(
-  self: themes.default.register(),
-  aspect-ratio: "16-9",
-  font-heading: (),
-  font-body: (),
-  font-size: 20pt,
-  footer: [],
-) = {
-  // color theme
-  self = (self.methods.colors)(
-    self: self,
-    primary: rgb("#009f8c"),
-    secondary: rgb("b75c9d"),
-    neutral-lightest: rgb("#ffffff"),
-    neutral-darkest: rgb("#272822"),
-  )
-  // variables for later use
-  self.clean-title = []
-  self.clean-footer = footer
-  // set page
-  let header(self) = {
-    set align(top)
-    show: components.cell.with(inset: (x: 2em, y: 1.5em))
-    set text(
-      size: 1.6em,
-      fill: self.colors.neutral-darkest,
-      weight: "bold",
-      font: font-heading,
-    )
-    utils.call-or-display(self, self.clean-title)
-  }
-  let footer(self) = {
-    set align(bottom)
-    show: pad.with(.4em)
-    set text(fill: self.colors.neutral-darkest, size: .8em)
-    utils.call-or-display(self, self.clean-footer)
-    h(1fr)
-    states.slide-counter.display() + " / " + states.last-slide-number
-  }
-  self.page-args += (
-    paper: "presentation-" + aspect-ratio,
-    header: header,
-    footer: footer,
-    margin: (top: 4em, bottom: 1.5em, x: 2em),
-  )
-
-  // register methods
-  self.methods.slide = slide
-  self.methods.title-slide = title-slide
-  self.methods.new-section-slide = new-section-slide
-  self.methods.touying-new-section-slide = new-section-slide
-  self.methods.focus-slide = focus-slide
-  self.methods.slides = slides
-  self.methods.alert = (self: none, it) => text(fill: self.colors.primary, it)
-  self.methods.fg = (self: none, it) => text(fill: self.colors.secondary, it)
-  self.methods.bg = (self: none, it) => highlight(
+// Functions
+#let _fg = (self: none, it) => text(fill: self.colors.secondary, it)
+#let _bg = (self: none, it) => highlight(
     fill: self.colors.primary,
     radius: 1pt,
     extent: 0.1em,
     it
   )
-  self.methods.button = button
-
-  self.methods.init = (self: none, body) => {
-    set text(size: font-size, font: font-body)
-    show link: set text(fill: self.colors.secondary)
-    // Unordered List
-    set list(
-      indent: 1em,
-      marker: (text(fill: self.colors.primary)[ #sym.triangle.filled ],
-                text(fill: self.colors.primary)[ #sym.arrow]),
-    )
-    // Ordered List
-    set enum(
-      indent: 1em,
-      full: true, // necessary to receive all numbers at once, so we can know which level we are at
-      numbering: (..nums) => {
-        let nums = nums.pos()
-        let num = nums.last()
-        let level = nums.len()
-
-        // format for current level
-        let format = ("1.", "i.", "a.").at(calc.min(2, level - 1))
-        let result = numbering(format, num)
-        text(fill: self.colors.primary, result)
-      }
-    ) 
-    // Slide Subtitle
-    show heading.where(level: 3): title => {
-      set text(
-        size: 1.1em,
-        fill: self.colors.primary,
-        font: font-body,
-        weight: "light",
-        style: "italic",
-      )
-      block(inset: (bottom: 0em))[#title]
-    }
-
-    set bibliography(title: none)
-
-    body
-  }
-  self
+#let _button(self: none, it) = {
+  box(inset: 5pt, radius: 6pt, fill: self.colors.primary)[
+    #set text(size: 0.6em, fill: white)
+    #sym.triangle.filled.r
+    #it
+  ]
 }
+
+#let fg(it) = touying-fn-wrapper(_fg.with(it))
+#let bg(it) = touying-fn-wrapper(_bg.with(it))
+#let button(it) = touying-fn-wrapper(_button.with(it))
