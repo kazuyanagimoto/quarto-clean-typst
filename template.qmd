@@ -77,9 +77,9 @@ Citations follow the standard
 [Quarto format](https://quarto.org/docs/authoring/footnotes-and-citations.html#citations)
 and be sourced from BibLaTeX, BibTeX, or CLS files. For example:
 
- - [Topic 1:]{.alert} Spatial Frictions [@Fajgelbaum_Morales_Serrato_Zidar_2018; @Hsieh_Moretti_2019; @Moretti_2011]
+ - [Topic 1:]{.alert} Spatial Frictions [[@Fajgelbaum_Morales_Serrato_Zidar_2018; @Hsieh_Moretti_2019; @Moretti_2011]]{.small-cite}
 
-- [Topic 2:]{.alert} Blah [@Suárez_Serrato_Zidar_2016]
+- [Topic 2:]{.alert} @Suárez_Serrato_Zidar_2016
 
 ## Components
 

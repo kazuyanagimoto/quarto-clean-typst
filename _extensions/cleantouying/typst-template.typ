@@ -169,6 +169,7 @@
                 link("https://orcid.org/" + author.orcid.text)[#fa-orcid()]
               } \
               #text(size: 0.7em, style: "italic")[
+                #show link: set text(size: 0.9em, fill: self.colors.neutral-darkest)
                 #link("mailto:" + author.email.children.map(email => email.text).join())[#author.email]
               ] \
               #text(size: 0.8em, style: "italic")[#author.affiliation]
@@ -199,13 +200,20 @@
     it
   )
 #let _button(self: none, it) = {
-  box(inset: 5pt, radius: 6pt, fill: self.colors.primary)[
-    #set text(size: 0.6em, fill: white)
+  box(inset: 5pt, radius: 3pt, fill: self.colors.primary)[
+    #set text(size: 0.5em, fill: white)
     #sym.triangle.filled.r
     #it
   ]
 }
 
+#let _small-cite(self: none, it) = text(
+  size: 0.7em,
+  fill: self.colors.neutral-darkest.lighten(30%),
+  it
+)
+
 #let fg(it) = touying-fn-wrapper(_fg.with(it))
 #let bg(it) = touying-fn-wrapper(_bg.with(it))
 #let button(it) = touying-fn-wrapper(_button.with(it))
+#let small-cite(it) = touying-fn-wrapper(_small-cite.with(it))

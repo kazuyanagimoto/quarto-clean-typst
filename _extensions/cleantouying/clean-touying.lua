@@ -5,6 +5,7 @@ function Span(el)
         {class = "fg", command = "fg"},
         {class = "bg", command = "bg"},
         {class = "button", command = "button"},
+        {class = "small-cite", command = "small-cite"},
     }
 
     for _, mapping in ipairs(class_to_command) do
