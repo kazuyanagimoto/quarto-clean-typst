@@ -11,10 +11,6 @@ author:
 format:
   cleantouying-typst:
     keep-typ: true
-    mainfont: Montserrat
-    sansfont: Josefin Sans
-    accent: 009F8C
-    accent2: B75C9D
     bibliographystyle: "chicago-author-date"
 bibliography: [references.bib]
 ---

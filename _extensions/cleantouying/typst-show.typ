@@ -1,19 +1,40 @@
 #show: clean-theme.with(
   aspect-ratio: "16-9",
+  $if(fontsize)$
+    font-size: $fontsize$,
+  $endif$
   $if(sansfont)$
     font-heading: ("$sansfont$",),
   $endif$
   $if(mainfont)$
     font-body: ("$mainfont$",),
   $endif$
-  $if(fontsize)$
-    font-size: $fontsize$,
+  $if(font-weight-heading)$
+    font-weight-heading: "$font-weight-heading$",
+  $endif$
+  $if(font-weight-body)$
+    font-weight-body: "$font-weight-body$",
+  $endif$
+  $if(font-weight-title)$
+    font-weight-title: "$font-weight-title$",
+  $endif$
+  $if(font-size-title)$
+    font-size-title: $font-size-title$,
+  $endif$
+  $if(font-size-subtitle)$
+    font-size-subtitle: $font-size-subtitle$,
+  $endif$
+  $if(jet)$
+    color-jet: "$jet$",
   $endif$
   $if(accent)$
-    color-primary: "$accent$",
+    color-accent: "$accent$",
   $endif$
   $if(accent2)$
-    color-secondary: "$accent2$",
+    color-accent2: "$accent2$",
+  $endif$
+  $if(accent3)$
+    color-accent3: "$accent3$",
   $endif$
 )
 

@@ -24,11 +24,11 @@
   // set page
   let header(self) = {
     set align(top)
-    show: components.cell.with(inset: (x: 2em, y: 1.5em))
+    show: components.cell.with(inset: (x: 2em, top: 1.5em))
     set text(
-      size: 1.6em,
+      size: 1.4em,
       fill: self.colors.neutral-darkest,
-      weight: "bold",
+      weight: "light",
       font: self.store.font-heading,
     )
     utils.call-or-display(self, self.store.header)
@@ -58,15 +58,23 @@
   aspect-ratio: "16-9",
   header: utils.display-current-heading(level: 2),
   footer: [],
-  font-heading: (),
-  font-body: (),
   font-size: 20pt,
-  color-primary: "#009f8c",
-  color-secondary: "b75c9d",
+  font-heading: ("Roboto"),
+  font-body: ("Roboto"),
+  font-weight-heading: "light",
+  font-weight-body: "light",
+  font-weight-title: "light",
+  font-size-title: 1.4em,
+  font-size-subtitle: 1em,
+  color-jet: "131516",
+  color-accent: "107895",
+  color-accent2: "9a2515",
+  color-accent3: "e64173",
   ..args,
   body,
 ) = {
-  set text(size: font-size, font: font-body)
+  set text(size: font-size, font: font-body, fill: rgb(color-jet),
+           weight: font-weight-body)
 
   show: touying-slides.with(
     config-page(
@@ -79,7 +87,7 @@
     ),
     config-methods(
       init: (self: none, body) => {
-        show link: set text(fill: self.colors.secondary)
+        show link: set text(fill: self.colors.primary)
         // Unordered List
         set list(
           indent: 1em,
@@ -117,19 +125,23 @@
 
         body
       },
-      alert: utils.alert-with-primary-color,
+      alert: (self: none, it) => text(fill: self.colors.secondary, it),
     ),
     config-colors(
-      primary: rgb(color-primary),
-      secondary: rgb(color-secondary),
+      primary: rgb(color-accent),
+      secondary: rgb(color-accent2),
+      tertiary: rgb(color-accent3),
       neutral-lightest: rgb("#ffffff"),
-      neutral-darkest: rgb("#272822"),
+      neutral-darkest: rgb(color-jet),
     ),
     // save the variables for later use
     config-store(
       header: header,
       footer: footer,
       font-heading: font-heading,
+      font-size-title: font-size-title,
+      font-size-subtitle: font-size-subtitle,
+      font-weight-title: font-weight-title,
       ..args,
     ),
   )
@@ -145,11 +157,17 @@
     set align(left + horizon)
     block(
       inset: (y: 1em),
-      [#text(size: 2em, fill: self.colors.neutral-darkest, weight: "bold", info.title)
+      [#text(size: self.store.font-size-title,
+             fill: self.colors.neutral-darkest,
+             weight: self.store.font-weight-title,
+             info.title)
        #if info.subtitle != none {
         linebreak()
-        v(0em)
-        text(size: 1.2em, style: "italic", fill: self.colors.primary, info.subtitle)
+        v(-0.3em)
+        text(size: self.store.font-size-subtitle,
+             style: "italic",
+             fill: self.colors.primary,
+             info.subtitle)
       }]
     )
 
@@ -163,7 +181,7 @@
         row-gutter: 1.5em,
         ..info.authors.map(author =>
             align(left)[
-              #text(size: 1.2em, weight: "medium")[#author.name]
+              #text(size: 1em, weight: "regular")[#author.name]
               #if author.orcid != [] {
                 show link: set text(size: 0.7em, fill: rgb("a6ce39"))
                 link("https://orcid.org/" + author.orcid.text)[#fa-orcid()]
@@ -192,15 +210,17 @@
 
 
 // Functions
-#let _fg = (self: none, it) => text(fill: self.colors.secondary, it)
+#let _fg = (self: none, it) => text(fill: self.colors.tertiary, it)
 #let _bg = (self: none, it) => highlight(
-    fill: self.colors.primary,
-    radius: 1pt,
-    extent: 0.1em,
+    fill: self.colors.tertiary,
+    radius: 2pt,
+    extent: 0.2em,
     it
   )
 #let _button(self: none, it) = {
-  box(inset: 5pt, radius: 3pt, fill: self.colors.primary)[
+  box(inset: 5pt,
+      radius: 3pt,
+      fill: self.colors.primary)[
     #set text(size: 0.5em, fill: white)
     #sym.triangle.filled.r
     #it
