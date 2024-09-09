@@ -56,6 +56,7 @@
 
 #let clean-theme(
   aspect-ratio: "16-9",
+  handout: false,
   header: utils.display-current-heading(level: 2),
   footer: [],
   font-size: 20pt,
@@ -69,7 +70,6 @@
   color-jet: "131516",
   color-accent: "107895",
   color-accent2: "9a2515",
-  color-accent3: "e64173",
   ..args,
   body,
 ) = {
@@ -84,6 +84,7 @@
     config-common(
       slide-fn: slide,
       new-section-slide-fn: new-section-slide,
+      handout: handout,
     ),
     config-methods(
       init: (self: none, body) => {
@@ -118,7 +119,7 @@
             weight: "light",
             style: "italic",
           )
-          block(inset: (bottom: 0em))[#title]
+          block(inset: (top: -0.5em, bottom: 0.25em))[#title]
         }
 
         set bibliography(title: none)
@@ -126,11 +127,11 @@
         body
       },
       alert: (self: none, it) => text(fill: self.colors.secondary, it),
+      cover: (self: none, body) => box(scale(x: 0%, body)), // Hack for enum and list
     ),
     config-colors(
       primary: rgb(color-accent),
       secondary: rgb(color-accent2),
-      tertiary: rgb(color-accent3),
       neutral-lightest: rgb("#ffffff"),
       neutral-darkest: rgb(color-jet),
     ),
@@ -209,10 +210,10 @@
 
 
 
-// Functions
-#let _fg = (self: none, it) => text(fill: self.colors.tertiary, it)
-#let _bg = (self: none, it) => highlight(
-    fill: self.colors.tertiary,
+// Custom Functions
+#let fg = (fill: rgb("e64173"), it) => text(fill: fill, it)
+#let bg = (fill: rgb("e64173"), it) => highlight(
+    fill: fill,
     radius: 2pt,
     extent: 0.2em,
     it
@@ -233,7 +234,5 @@
   it
 )
 
-#let fg(it) = touying-fn-wrapper(_fg.with(it))
-#let bg(it) = touying-fn-wrapper(_bg.with(it))
 #let button(it) = touying-fn-wrapper(_button.with(it))
 #let small-cite(it) = touying-fn-wrapper(_small-cite.with(it))

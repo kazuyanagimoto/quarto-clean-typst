@@ -1,116 +1,71 @@
 ---
-title: Quarto Clean Theme
-subtitle: A Minimalistic Theme for Quarto + Typst + Touying
-date: today
-date-format: long
+title: A title
+subtitle: A subtitle
+format: cleantouying-typst
 author:
-  - name: Kazuharu Yanagimoto
-    orcid: 0009-0007-1967-8304
-    email: kazuharu.yanagimoto@cemfi.edu.es
-    affiliations: CEMFI
-format:
-  cleantouying-typst:
-    keep-typ: true
-    bibliographystyle: "chicago-author-date"
-bibliography: [references.bib]
+  - name: Your Name
+    orcid: 0000-0000-0000-0000
+    email: alias@email.com
+    affiliations: Your Institution
+date: last-modified
 ---
 
-## Example Slide
 
-### This is a subtitle
+# Section Slide as Header Level 1
 
-Here we have some text that may run over several lines of the slide frame,
-depending on how long it is.
+## Slide Title as Header Level 2
 
-- first item 
+### Subtitle as Header Level 3
+
+You can put any content here, including text, images, tables, code blocks, etc.
+
+- first unorder list item
     - A sub item
+
+1. first ordered list item
+    1. A sub item
 
 Next, we'll brief review some theme-specific components.
 
-- Note that _all_ of the standard Reveal.js
-[features](https://quarto.org/docs/presentations/revealjs/)
-can be used with this theme, even if we don't highlight them here.
+- Note that _all_ of the standard Quarto + Typst
+[features](https://quarto.org/docs/output-formats/typst.html) 
+can be used with this theme
+- Also, all the [Touying](https://touying-typ.github.io) features can be used by **Typst native code**
+
+## Additional Theme Classes
+
+### Some extra things you can do with the clean theme
+
+Special classes for emphasis
+
+- `.alert` class for default emphasis, e.g. [the second accent color]{.alert}.
+- `.fg` class for custom color, e.g. [with `fill="#5D639E"`]{.fg fill="#5D639E"}.
+- `.bg` class for custom background, e.g. [with the default color]{.bg}.
+
+Cross-references
+
+- `.button` class provides a Beamer-like button, e.g.
+[[Summary]{.button}](#sec-summary)
 
 
-# Components
+## Summary {#sec-summary}
 
-## Components
+### A Minimalistic Presentation Theme for Quarto + Typst with Touying
 
-### Ordered & Unordered Lists
+Add the theme to an existing project
 
-Here we have an unordered list.
+```{.bash}
+quarto install extension kazuyanagimoto/quarto-cleantouying-typst
+```
 
-- first item
-    - sub-item
-- second item
+... or, create a new project using this slide deck as a lean template
 
-And next we have an ordered one.
-
-1. first item
-    1. sub-item
-1. second item
-
-## Components
-
-### Alerts & Cross-refs {#sec-crossref}
-
-To emphasize specific words or text, you can:
-
-- Use the default `.alert` class, e.g. [important note]{.alert}
-- Use the `.fg` class for custom color, e.g. [important note]{.fg}
-- Use the `.bg` class for custom background, e.g. [important note]{.bg}
-
-To cross-reference, you have several options, for example:
-
-- Beamer-like .button class provided by this theme, e.g. [[Appendix]{.button}](#sec-appendix)
-- However, the heading cross-refs is not supported, see [Appendix](#sec-appendix)
-
-## Components
-
-### Citations
-
-Citations follow the standard
-[Quarto format](https://quarto.org/docs/authoring/footnotes-and-citations.html#citations)
-and be sourced from BibLaTeX, BibTeX, or CLS files. For example:
-
- - [Topic 1:]{.alert} Spatial Frictions [[@Fajgelbaum_Morales_Serrato_Zidar_2018; @Hsieh_Moretti_2019; @Moretti_2011]]{.small-cite}
-
-- [Topic 2:]{.alert} @Suárez_Serrato_Zidar_2016
-
-## Components
-
-### Blocks
-
-Quarto provides
-[dedicated environments](https://quarto.org/docs/authoring/cross-references.html#theorems-and-proofs)
-for theorems, lemmas, and so forth. 
-
-But in presentation format, it's arguably more effective just to use a
-[Callout Block](https://quarto.org/docs/authoring/callouts.html).
+```{.bash}
+quarto use template kazuyanagimoto/quarto-cleantouying-typst
+```
 
 
-:::{.callout-note}
+### Longer Demo
 
-## Regression Specification
+For a more comprehensive demo, see the [demo slides]() and [code]()!
 
-The main specification is as follows:
-
-$$
-y_{it} = X_{it} \beta + \mu_i + \varepsilon_{it}
-$$
-
-:::
-
-
-
-
-# Appendix
-
-## Touying Heading Cross-refs {#sec-appendix}
-
-[[Back to main]{.button}](#sec-crossref)
-
-## References
-
-::: {#refs}
-:::

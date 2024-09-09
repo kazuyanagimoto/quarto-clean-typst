@@ -1,5 +1,8 @@
 #show: clean-theme.with(
   aspect-ratio: "16-9",
+  $if(handout)$
+    handout: true,
+  $endif$
   $if(fontsize)$
     font-size: $fontsize$,
   $endif$
@@ -32,9 +35,6 @@
   $endif$
   $if(accent2)$
     color-accent2: "$accent2$",
-  $endif$
-  $if(accent3)$
-    color-accent3: "$accent3$",
   $endif$
 )
 
