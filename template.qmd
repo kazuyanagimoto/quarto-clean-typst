@@ -39,7 +39,7 @@ can be used with this theme
 Special classes for emphasis
 
 - `.alert` class for default emphasis, e.g. [the second accent color]{.alert}.
-- `.fg` class for custom color, e.g. [with `fill="#5D639E"`]{.fg fill="#5D639E"}.
+- `.fg` class for custom color, e.g. [with `options='fill: rgb("#5D639E")'`]{.fg options='fill: rgb("#5D639E")'}.
 - `.bg` class for custom background, e.g. [with the default color]{.bg}.
 
 Cross-references
@@ -67,5 +67,5 @@ quarto use template kazuyanagimoto/quarto-clean-typst
 
 ### Longer Demo
 
-For a more comprehensive demo, see the [demo slides]() and [code]()!
+For a more comprehensive demo, see the [demo slides](https://kazuyanagimoto.com/quarto-slides-typst/slides/quarto-clean-typst/clean.pdf) and [code](https://github.com/kazuyanagimoto/quarto-slides-typst/blob/main/slides/quarto-clean-typst/clean.qmd)!
 
