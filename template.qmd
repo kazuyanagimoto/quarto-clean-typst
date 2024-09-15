@@ -1,7 +1,7 @@
 ---
 title: A title
 subtitle: A subtitle
-format: cleantouying-typst
+format: clean-typst
 author:
   - name: Your Name
     orcid: 0000-0000-0000-0000
@@ -55,13 +55,13 @@ Cross-references
 Add the theme to an existing project
 
 ```{.bash}
-quarto install extension kazuyanagimoto/quarto-cleantouying-typst
+quarto install extension kazuyanagimoto/quarto-clean-typst
 ```
 
 ... or, create a new project using this slide deck as a lean template
 
 ```{.bash}
-quarto use template kazuyanagimoto/quarto-cleantouying-typst
+quarto use template kazuyanagimoto/quarto-clean-typst
 ```
 
 

@@ -28,7 +28,7 @@
     set text(
       size: 1.4em,
       fill: self.colors.neutral-darkest,
-      weight: "light",
+      weight: self.store.font-weight-heading,
       font: self.store.font-heading,
     )
     utils.call-or-display(self, self.store.header)
@@ -85,6 +85,7 @@
       slide-fn: slide,
       new-section-slide-fn: new-section-slide,
       handout: handout,
+      enable-frozen-states-and-counters: false // https://github.com/touying-typ/touying/issues/72
     ),
     config-methods(
       init: (self: none, body) => {
@@ -143,6 +144,7 @@
       font-size-title: font-size-title,
       font-size-subtitle: font-size-subtitle,
       font-weight-title: font-weight-title,
+      font-weight-heading: font-weight-heading,
       ..args,
     ),
   )
@@ -228,11 +230,4 @@
   ]
 }
 
-#let _small-cite(self: none, it) = text(
-  size: 0.7em,
-  fill: self.colors.neutral-darkest.lighten(30%),
-  it
-)
-
 #let button(it) = touying-fn-wrapper(_button.with(it))
-#let small-cite(it) = touying-fn-wrapper(_small-cite.with(it))
