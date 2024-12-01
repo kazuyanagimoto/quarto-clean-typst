@@ -1,0 +1,562 @@
+---
+title: Quarto Clean Theme
+subtitle: A Minimalistic Theme for Quarto + Typst + Touying
+date: today
+date-format: long
+image: static/img/thumbnail.svg
+author:
+  - name: Kazuharu Yanagimoto
+    orcid: 0009-0007-1967-8304
+    email: kazuharu.yanagimoto@cemfi.edu.es
+    affiliations: CEMFI
+format:
+  clean-typst:
+    bibliographystyle: "chicago-author-date"
+    font-paths: ["static/fonts"]
+    include-in-header: "custom.typ"
+    commands: [small-cite]
+execute: 
+  echo: false
+  warning: false
+bibliography: [static/references.bib]
+---
+# Section Slide as Header Level 1
+
+## Slide Title as Header Level 2
+
+### Subtitle as Header Level 3
+
+You can put any content here, including text, images, tables, code blocks, etc.
+
+- first unorder list item
+    - A sub item
+
+1. first ordered list item
+    1. A sub item
+
+Next, we'll brief review some theme-specific components.
+
+- Note that _all_ of the standard Quarto + Typst
+[features](https://quarto.org/docs/output-formats/typst.html) 
+can be used with this theme
+- Also, all the [Touying](https://touying-typ.github.io) features can be used by **Typst native code**
+
+## Before You Go...
+
+The [clean theme](https://github.com/kazuyanagimoto/quarto-clean-typst) does not depend on any languages.
+You can use it with any language supported by Quarto, including R, Python, Julia.
+
+For this demo, I use R code to show the figures and tables usage in the slides.
+
+{{< v 0.5em >}}
+
+::: {.callout-warning}
+
+## Required Software (this demo only)
+
+R Packages:
+
+```{.r}
+install.packages(c("palmerpenguins", "modelsummary", "tinytable", "dplyr", "ggplot2", "showtext"))
+```
+
+:::
+
+# Components
+
+## Components
+
+### Ordered & Unordered Lists
+
+Here we have an unordered list.
+
+- first item
+    - sub-item
+- second item
+
+And next we have an ordered one.
+
+1. first item
+    1. sub-item
+1. second item
+
+## Components
+
+### Alerts & Cross-refs {#sec-crossref}
+
+
+Special classes for emphasis
+
+- `.alert` class for default emphasis, e.g. [the second accent color]{.alert}.
+- `.fg` class for custom color, e.g. [with `options='fill: rgb("#5D639E")'`]{.fg options='fill: rgb("#5D639E")'}.
+- `.bg` class for custom background, e.g. [with the default color]{.bg}.
+
+To cross-reference, you have several options, for example:
+
+- Beamer-like .button class provided by this theme, e.g. [[Appendix]{.button}](#sec-appendix)
+- Sections are not numbered in Touying, you cannot use `@sec-` cross-references
+
+## Components
+
+### Citations
+
+Citations follow the standard
+[Quarto format](https://quarto.org/docs/authoring/footnotes-and-citations.html#citations)
+and be sourced from BibLaTeX, BibTeX, or CLS files. For example:
+
+- [Topic 1:]{.alert} Review of DID [@arkhangelsky2024]
+
+- [Topic 2:]{.alert} @goodman-bacon2021
+
+### Small Citations
+
+In many cases, you may want to use small citations, like
+
+- [Staggered DID]{.alert} [[@callaway2021;@sun2021;@borusyak2024]]{.small-cite}
+
+This `.small-cite` class is defined as a custom style [[custom styling]{.button}](#sec-custom-styling)
+
+## Components
+
+### Blocks
+
+Quarto provides
+[dedicated environments](https://quarto.org/docs/authoring/cross-references.html#theorems-and-proofs)
+for theorems, lemmas, and so forth. 
+
+But in presentation format, it's arguably more effective just to use a
+[Callout Block](https://quarto.org/docs/authoring/callouts.html).
+
+:::{.callout-note}
+
+## Regression Specification
+
+The main specification is as follows:
+
+$$
+y_{it} = X_{it} \beta + \mu_i + \varepsilon_{it}
+$$
+
+:::
+
+## Components
+
+### Multicolumn I: Text only
+
+:::: {layout-ncol=2}
+
+::: {#first-column}
+
+[Column 1]{.alert}
+
+Here is a long sentence that will wrap onto the next line as it hits the column
+width, and continue this way until it stops.
+
+Some text that should be laid out below the code
+
+:::
+
+::: {#second-column}
+
+[Column 2]{.alert}
+
+Some other text in another column.
+
+A second paragraph.
+
+:::
+
+::::
+
+[Quarto's layout](https://quarto.org/docs/authoring/figures.html#block-layout) is more simple and flexible than Touying's native multicolumn support.
+
+## Components
+### Multicolumn II: Text and Figures
+
+::: {layout-ncol=2}
+
+![](static/img/hokusai_kanagawa.jpg)
+
+- First point
+- Second point
+
+:::
+
+For simple cases, you don't even need to specify the class for each column.
+
+## Ad-hoc Styling
+
+### Typst CSS
+
+- Quarto supports [Typst CSS](https://quarto.org/docs/advanced/typst/typst-css.html) for simple styling
+- You can change [colors]{style="color: #009F8C"}, [backgrounds]{style="background-color: #F0F0F0"}, and [opacity]{style="opacity: 0.5"} for `span` elements
+
+::: {style="font-size: 30pt; font-family: 'Times New Roman'"}
+
+You can also change the font size and family for `div` elements.
+
+:::
+
+{{< v 1em >}}
+
+### Vertical Spacing
+
+- A helper shortcode `{{{< v DIST >}}}` is provided to add vertical spacing
+- This is converted to a Typst code `#v(DIST)` internally.
+
+{{< v 2em >}}
+
+This is a `2em` vertical spaced from above.
+
+## Custom Styling {#sec-custom-styling}
+
+As [latex-environment](https://github.com/quarto-ext/latex-environment) quarto extenstion, you can define custom `div` and `span` elements.
+
+```yaml
+format:
+  clean-typst:
+    include-in-header: "custom.typ"
+    commands: [foo]
+```
+
+- You can define custom `div` and `span` elements as Typst functions in `custom.typ` 
+  - `environments` in YAML is for block elements `:::{.foo}\nbody\n:::`
+  - `commands` in YAML is for inline elements `[]{.foo}`
+- `[text]{.foo options="opts"}` is converted to `#foo(opts)[text]` internally
+- If you want to use `self` as an argument, you can use `touying-fn-wrapper()`
+
+
+
+
+
+## YAML Settings
+
+### Fonts
+
+```yaml
+format:
+  clean-typst:
+    font-size: 20pt
+    font-heading: Josefin Sans
+    font-body: Montserrat
+    font-weight-heading: bold
+    font-weight-body: normal
+    font-size-title: 2.5em
+    font-size-subtitle: 1.5em
+```
+
+- `font-size` is the default font size for the slide. Other font sizes are relative to this
+- `font-heading` and `font-body` are the font families for headings and body text
+- Since the title slide is important, size of the title `font-size-title` and `font-size-subtitle` can be set separately
+
+## YAML Settings
+
+### Colors
+
+```yaml
+format:
+  clean-typst:
+    color-jet: "#272822"
+    color-accent: "$accent$"
+    color-accent2: "$accent2$"
+```
+
+- `color-jet` is the main color for text. `#000000` is too dark, and the default is `#131516`
+- `color-accent` is used for the subtitle of the slide, buttons, lists, and the link colors
+- `color-accent2` is used for the alert colors
+
+# Animations
+
+## Simple Animations {#sec-simple-animation}
+
+Touying's [simple animations](https://touying-typ.github.io/docs/dynamic/simple) is available as `{{{< pause >}}}` and `{{{< meanwhile >}}}`
+
+{{< pause >}}
+
+**Animations in Lists**
+
+Simple animations can be used in lists
+
+- First {{< pause >}}
+- Second
+
+
+## Complex Animations {#sec-complex-animation}
+
+:::: {.complex-anim repeat=4}
+
+Touying's [complex animations](https://touying-typ.github.io/docs/dynamic/complex) is available as `{.complex-anim repeat=4}` environment.
+
+
+At subslide `#self.subslide`{=typst}, we can
+
+use [`{.uncover}` environment]{.uncover options='"2-"'} for reserving space,
+
+use [`{.only}` environment]{.only options='"2-"'} for not reserving space,
+
+```{=typst}
+#alternatives[call `#only` multiple times \u{2717}][use `#alternatives` function #sym.checkmark] for choosing one of the alternatives. But only works in a native Typst code. \
+```
+
+::: {.only options='4'}
+
+### Other Features
+
+- All the animation functions can be used in Typst Math code [[Appendix]{.button}](#sec-math-animations)
+- `handout: true` in YAML header is available for handout mode (without animations)
+
+:::
+
+::::
+
+
+# Figures & Tables
+
+```{r}
+library(palmerpenguins)
+library(dplyr)
+library(ggplot2)
+library(tinytable)
+library(modelsummary)
+library(showtext)
+
+options(tinytable_quarto_figure = TRUE) # Figures without captions
+```
+
+```{r}
+color_accent <- "#107895"
+color_accent2 <- "#9a2515"
+color_accent3 <- "#e64173"
+
+font_base_regular <- "Roboto Condensed"
+font_base_light <- "Roboto Condensed Light"
+
+# font_add_google(font_base_regular, font_base_light)
+showtext_auto()
+
+theme_quarto <- function(font_title = font_base_regular,
+                        font_text = font_base_light,
+                        size_base = 20) {
+                          
+    ggplot2::theme_minimal(base_family = font_text, base_size = size_base) +
+        ggplot2::theme(
+        plot.title = ggplot2::element_text(size = size_base * 1.2, face = "bold",
+                                            family = font_title),
+        plot.subtitle = ggplot2::element_text(size = size_base, face = "plain",
+                                                family = font_text),
+        plot.caption = ggplot2::element_text(size = size_base * 0.6,
+                                            color = "grey50",
+                                            face = "plain",
+                                            family = font_text,
+                                            margin = ggplot2::margin(t = 10)),
+        panel.grid.minor = ggplot2::element_blank(),
+        strip.text = ggplot2::element_text(size = size_base * 0.9, hjust = 0,
+                                            family = font_text, face = "bold"),
+        strip.background = ggplot2::element_rect(fill = "#ffffff", color = NA),
+        axis.ticks = ggplot2::element_blank(),
+        axis.title = ggplot2::element_text(family = font_text, face = "plain",
+                                            size = size_base * 0.8),
+        axis.title.x = ggplot2::element_text(margin = ggplot2::margin(t = 5)),
+        axis.text = ggplot2::element_text(family = font_text, face = "plain"),
+        legend.title = ggplot2::element_blank(),
+        legend.key = ggplot2::element_blank(),
+        legend.text = ggplot2::element_text(size = size_base * 0.75,
+                                            family = font_text, face = "plain"),
+        legend.spacing = ggplot2::unit(0.1, "lines"),
+        legend.box.margin = ggplot2::margin(t = -0.5, unit = "lines"),
+        legend.margin = ggplot2::margin(t = 0),
+        legend.position = "bottom",
+        plot.title.position = "plot"
+        )
+}
+```
+
+
+
+## Figures
+
+```{r}
+#| fig-width: 10
+#| fig-height: 4
+#| fig-align: center
+
+penguins |>
+  filter(!is.na(sex)) |>
+  mutate(lbl_facet = recode_factor(sex, `male` = "Male", `female` = "Female")) |>
+  ggplot(aes(x = flipper_length_mm, y = bill_length_mm,
+             color = species, shape = species)) +
+  geom_point(size = 3) +
+  geom_smooth(method = "lm", se = FALSE) +
+  scale_color_manual(values = c(color_accent, color_accent2, color_accent3)) +
+  facet_wrap(~lbl_facet) +
+  labs(x = "Flipper Length (mm)", y = "Bill Length (mm)") +
+  theme_quarto() +
+  theme(legend.position = c(0.9, 0.1))
+       
+```
+
+This is a `facet_wrap` example with `penguins` dataset.
+
+## Figures
+
+```{r}
+#| layout-ncol: 2
+#| fig-width: 5
+#| fig-height: 3
+#| fig-align: center
+
+penguins |>
+  ggplot(aes(x = flipper_length_mm, y = body_mass_g,
+             color = species, shape = species)) +
+  geom_point(size = 3) +
+  scale_color_manual(values = c(color_accent, color_accent2, color_accent3)) +
+  labs(x = "Flipper Length (mm)", y = "Body Mass (g)") +
+  theme_quarto() +
+  theme(legend.position = c(0.9, 0.1))
+
+penguins |>
+  ggplot(aes(x = flipper_length_mm, color = species, shape = species)) +
+  geom_density() +
+  scale_color_manual(values = c(color_accent, color_accent2, color_accent3)) +
+  labs(x = "Flipper Length (mm)", y = "Density") +
+  theme_quarto() +
+  theme(legend.position = c(0.9, 0.1))
+```
+
+This is an example of `layout-ncol: 2` for two figures.
+
+## Tables
+
+```{r}
+options(tinytable_quarto_figure = TRUE)
+```
+
+
+```{r}
+tt_sum <- penguins |>
+  filter(!is.na(sex)) |>
+  summarize(across(bill_length_mm:body_mass_g, ~mean(.x, na.rm = TRUE)),
+            .by = c(species, sex)) |>
+  tidyr::pivot_wider(names_from = sex,
+                     values_from = c(bill_length_mm, bill_depth_mm,
+                                     flipper_length_mm, body_mass_g)) |>
+  select(species, ends_with("_male"), ends_with("_female")) |>
+  `colnames<-`(c("", rep(c("Bill Length (mm)", "Bill Depth (mm)",
+                                  "Flipper Length (mm)", "Body Mass (g)"),
+                                times = 4))) |>
+  tt() |>
+  group_tt(j = list("Male" = 2:5, "Female" = 6:9)) |>
+  format_tt(j = c(2:9), digits = 4)
+```
+
+:::: {.complex-anim repeat=3}
+
+::: {.only options='1'}
+
+```{r}
+tt_sum
+```
+
+:::
+
+::: {.only options='"2-"'}
+
+```{r}
+tt_sum |>
+  style_tt(i = 2, background = color_accent,
+           color = "white", bold = TRUE)
+```
+
+:::
+
+- You can easily create Typst tables by [`tinytable`](https://vincentarelbundock.github.io/tinytable/) {{< pause >}}
+- You can [highlight]{.alert} by `tinytable::style_tt()`! {{< pause >}}
+- Read the [GitHub Issue](https://github.com/vincentarelbundock/tinytable/issues/337) and see `theme_slides()` for the table without captions
+
+::::
+
+## Regression Table
+
+```{r}
+cm <- c(
+  "speciesChinstrap" = "Chinstrap",
+  "speciesGentoo" = "Gentoo",
+  "sexmale" = "Male",
+  "year" = "Year"
+)
+
+gm <- tibble(
+  raw = c("nobs", "r2"),
+  clean = c("Observations", "$R^2$"),
+  fmt = c(0, 3)
+)
+
+list("(1)" = lm(bill_length_mm ~ species, data = penguins),
+     "(2)" = lm(bill_length_mm ~ species + sex, data = penguins),
+     "(3)" = lm(bill_length_mm ~ species + sex + year, data = penguins),
+     "(4)" = lm(body_mass_g ~ species, data = penguins),
+     "(5)" = lm(body_mass_g ~ species + sex, data = penguins),
+     "(6)" = lm(body_mass_g ~ species + sex + year, data = penguins)) |>
+  modelsummary(stars = c("+" = .1, "*" = .05, "**" = .01),
+               coef_map = cm,
+               gof_map = gm) |>
+  group_tt(j = list("Bill Length (mm)" = 2:4, "Body Mass (g)" = 5:7))
+```
+
+
+[modelsummary](https://modelsummary.com) is a super useful for regression tables (`tinytable` is used internally)
+
+
+## Last Words {#sec-last}
+
+### Installation
+
+```{.bash}
+quarto install extension kazuyanagimoto/quarto-clean-typst
+```
+
+### Limitations
+
+- Background colors and images are not supported
+
+### Appendix
+
+- You can use `{{{< appendix >}}}` to start an appendix section. Slide numbering will be freezed. (Next Slides)
+
+{{< appendix >}}
+
+# Appendix {#sec-appendix}
+
+## Touying Math Animations {#sec-math-animations}
+
+```{.typst}
+Touying equation with pause:
+$
+  f(x) &= pause x^2 + 2x + 1  \
+       &= pause (x + 1)^2  \
+$
+Touying equation is very simple.
+```
+
+Touying equation with pause:
+
+```{=typst}
+$
+  f(x) &= pause x^2 + 2x + 1  \
+       &= pause (x + 1)^2  \
+$
+```
+
+
+{{< meanwhile >}}
+
+Touying equation is very simple.
+
+
+
+[[Back to main]{.button}](#sec-complex-animation)
+
+## References
+
+::: {#refs}
+:::

@@ -7,8 +7,8 @@ author:
     orcid: 0000-0000-0000-0000
     email: alias@email.com
     affiliations: Your Institution
-date: last-modified
-keep-typ: true
+date: today
+date-format: long
 ---
 
 # Section Slide as Header Level 1

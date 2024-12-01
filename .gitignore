@@ -3,5 +3,8 @@
 /.luarc.json
 /template.typ
 README.html
-README_files/*
 .Rproj.user
+docs/
+*_files/
+
+/.quarto/
