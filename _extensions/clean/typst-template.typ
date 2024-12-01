@@ -1,17 +1,17 @@
-#import "@preview/touying:0.5.2": *
+#import "@preview/touying:0.5.3": *
 #import "@preview/fontawesome:0.3.0": *
 
-#let new-section-slide(level: 1, title)  = touying-slide-wrapper(self => {
-  let body = {
+#let new-section-slide(self: none, body)  = touying-slide-wrapper(self => {
+  let main-body = {
     set align(left + horizon)
     set text(size: 2.5em, fill: self.colors.primary, weight: "bold")
-    title
+    utils.display-current-heading(level: 1)
   }
   self = utils.merge-dicts(
     self,
     config-page(margin: (left: 2em, top: -0.25em)),
   ) 
-  touying-slide(self: self, body)
+  touying-slide(self: self, main-body)
 })
 
 #let slide(
@@ -85,7 +85,8 @@
       slide-fn: slide,
       new-section-slide-fn: new-section-slide,
       handout: handout,
-      enable-frozen-states-and-counters: false // https://github.com/touying-typ/touying/issues/72
+      enable-frozen-states-and-counters: false, // https://github.com/touying-typ/touying/issues/72
+      show-hide-set-list-marker-none: true
     ),
     config-methods(
       init: (self: none, body) => {
@@ -128,7 +129,6 @@
         body
       },
       alert: (self: none, it) => text(fill: self.colors.secondary, it),
-      cover: (self: none, body) => box(scale(x: 0%, body)), // Hack for enum and list
     ),
     config-colors(
       primary: rgb(color-accent),

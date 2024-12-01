@@ -8,8 +8,8 @@ author:
     email: alias@email.com
     affiliations: Your Institution
 date: last-modified
+keep-typ: true
 ---
-
 
 # Section Slide as Header Level 1
 
@@ -68,4 +68,3 @@ quarto use template kazuyanagimoto/quarto-clean-typst
 ### Longer Demo
 
 For a more comprehensive demo, see the [demo slides](https://kazuyanagimoto.com/quarto-slides-typst/slides/quarto-clean-typst/clean.pdf) and [code](https://github.com/kazuyanagimoto/quarto-slides-typst/blob/main/slides/quarto-clean-typst/clean.qmd)!
-
