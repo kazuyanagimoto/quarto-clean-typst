@@ -1,0 +1,1 @@
+Sitemap: https://kazuyanagimoto.github.io/quarto-clean-typst/sitemap.xml
