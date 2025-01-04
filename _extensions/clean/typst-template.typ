@@ -67,13 +67,13 @@
   font-weight-title: "light",
   font-size-title: 1.4em,
   font-size-subtitle: 1em,
-  color-jet: "131516",
-  color-accent: "107895",
-  color-accent2: "9a2515",
+  color-jet: rgb("131516"),
+  color-accent: rgb("107895"),
+  color-accent2: rgb("9a2515"),
   ..args,
   body,
 ) = {
-  set text(size: font-size, font: font-body, fill: rgb(color-jet),
+  set text(size: font-size, font: font-body, fill: color-jet,
            weight: font-weight-body)
 
   show: touying-slides.with(
@@ -131,10 +131,10 @@
       alert: (self: none, it) => text(fill: self.colors.secondary, it),
     ),
     config-colors(
-      primary: rgb(color-accent),
-      secondary: rgb(color-accent2),
+      primary: color-accent,
+      secondary: color-accent2,
       neutral-lightest: rgb("#ffffff"),
-      neutral-darkest: rgb(color-jet),
+      neutral-darkest: color-jet,
     ),
     // save the variables for later use
     config-store(
