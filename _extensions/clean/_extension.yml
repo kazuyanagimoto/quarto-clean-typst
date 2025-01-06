@@ -1,6 +1,6 @@
 title: Quarto Clean Theme
 author: Kazuharu Yanagimoto
-version: 0.2.1
+version: 0.2.2
 quarto-required: ">=1.5.0"
 contributes:
   format:
@@ -9,6 +9,7 @@ contributes:
         - shortcodes.lua
       filters:
         - typst-environment.lua
+        - incremental.lua
       template-partials:
         - typst-template.typ
         - typst-show.typ
