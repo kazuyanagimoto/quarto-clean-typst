@@ -280,9 +280,9 @@ Simple animations can be used in lists
 - First {{< pause >}}
 - Second
 
-**Incremantal Class**
+**Incremental Class** (_experimental_)
 
-As revealjs, you can use `.incremental` class (experimental)
+As revealjs, you can use `.incremental` class
 
 ::: {.incremental}
 
