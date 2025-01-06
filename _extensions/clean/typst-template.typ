@@ -86,7 +86,8 @@
       new-section-slide-fn: new-section-slide,
       handout: handout,
       enable-frozen-states-and-counters: false, // https://github.com/touying-typ/touying/issues/72
-      show-hide-set-list-marker-none: true
+      show-hide-set-list-marker-none: true,
+      show-strong-with-alert: false
     ),
     config-methods(
       init: (self: none, body) => {

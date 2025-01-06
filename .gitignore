@@ -6,5 +6,6 @@ README.html
 .Rproj.user
 docs/
 *_files/
+.vscode/
 
 /.quarto/
