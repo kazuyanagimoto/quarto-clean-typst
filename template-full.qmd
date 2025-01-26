@@ -280,6 +280,17 @@ Simple animations can be used in lists
 - First {{< pause >}}
 - Second
 
+**Incremental Class** (_experimental_)
+
+As revealjs, you can use `.incremental` class
+
+::: {.incremental}
+
+- First
+- Second
+
+:::
+
 
 ## Complex Animations {#sec-complex-animation}
 
