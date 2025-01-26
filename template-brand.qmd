@@ -21,7 +21,7 @@ brand:
     base: Montserrat
     headings:
       family: Josefin Sans
-      weight: 600
+      weight: semi-bold
     monospace:
       family: Fira Code
       size: 0.9em
@@ -37,11 +37,10 @@ brand:
     clean-typst:
       title-slide:
         title:
-          family: 
-          size: 2em
+          size: 1.8em
+          weight: 600
         subtitle:
           size: 1em
-keep-typ: true
 ---
 
 # Section Slide as Header Level 1
