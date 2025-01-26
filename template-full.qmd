@@ -12,13 +12,18 @@ author:
 format:
   clean-typst:
     bibliographystyle: "chicago-author-date"
-    font-paths: ["static/fonts"]
     include-in-header: "custom.typ"
     commands: [small-cite]
 execute: 
   echo: false
   warning: false
 bibliography: [static/references.bib]
+brand:
+  typography: 
+    fonts: 
+      - family: Roboto
+        weight: [light, bold]
+        source: google
 ---
 # Section Slide as Header Level 1
 
@@ -345,39 +350,66 @@ font_base_light <- "Roboto Condensed Light"
 # font_add_google(font_base_regular, font_base_light)
 showtext_auto()
 
-theme_quarto <- function(font_title = font_base_regular,
-                        font_text = font_base_light,
-                        size_base = 20) {
-                          
+theme_quarto <- function(
+    font_title = font_base_regular,
+    font_text = font_base_light,
+    size_base = 20
+) {
     ggplot2::theme_minimal(base_family = font_text, base_size = size_base) +
         ggplot2::theme(
-        plot.title = ggplot2::element_text(size = size_base * 1.2, face = "bold",
-                                            family = font_title),
-        plot.subtitle = ggplot2::element_text(size = size_base, face = "plain",
-                                                family = font_text),
-        plot.caption = ggplot2::element_text(size = size_base * 0.6,
-                                            color = "grey50",
-                                            face = "plain",
-                                            family = font_text,
-                                            margin = ggplot2::margin(t = 10)),
-        panel.grid.minor = ggplot2::element_blank(),
-        strip.text = ggplot2::element_text(size = size_base * 0.9, hjust = 0,
-                                            family = font_text, face = "bold"),
-        strip.background = ggplot2::element_rect(fill = "#ffffff", color = NA),
-        axis.ticks = ggplot2::element_blank(),
-        axis.title = ggplot2::element_text(family = font_text, face = "plain",
-                                            size = size_base * 0.8),
-        axis.title.x = ggplot2::element_text(margin = ggplot2::margin(t = 5)),
-        axis.text = ggplot2::element_text(family = font_text, face = "plain"),
-        legend.title = ggplot2::element_blank(),
-        legend.key = ggplot2::element_blank(),
-        legend.text = ggplot2::element_text(size = size_base * 0.75,
-                                            family = font_text, face = "plain"),
-        legend.spacing = ggplot2::unit(0.1, "lines"),
-        legend.box.margin = ggplot2::margin(t = -0.5, unit = "lines"),
-        legend.margin = ggplot2::margin(t = 0),
-        legend.position = "bottom",
-        plot.title.position = "plot"
+            plot.title = ggplot2::element_text(
+                size = size_base * 1.2,
+                face = "bold",
+                family = font_title
+            ),
+            plot.subtitle = ggplot2::element_text(
+                size = size_base,
+                face = "plain",
+                family = font_text
+            ),
+            plot.caption = ggplot2::element_text(
+                size = size_base * 0.6,
+                color = "grey50",
+                face = "plain",
+                family = font_text,
+                margin = ggplot2::margin(t = 10)
+            ),
+            panel.grid.minor = ggplot2::element_blank(),
+            strip.text = ggplot2::element_text(
+                size = size_base * 0.9,
+                hjust = 0,
+                family = font_text,
+                face = "bold"
+            ),
+            strip.background = ggplot2::element_rect(
+                fill = "#ffffff",
+                color = NA
+            ),
+            axis.ticks = ggplot2::element_blank(),
+            axis.title = ggplot2::element_text(
+                family = font_text,
+                face = "plain",
+                size = size_base * 0.8
+            ),
+            axis.title.x = ggplot2::element_text(
+                margin = ggplot2::margin(t = 5)
+            ),
+            axis.text = ggplot2::element_text(
+                family = font_text,
+                face = "plain"
+            ),
+            legend.title = ggplot2::element_blank(),
+            legend.key = ggplot2::element_blank(),
+            legend.text = ggplot2::element_text(
+                size = size_base * 0.75,
+                family = font_text,
+                face = "plain"
+            ),
+            legend.spacing = ggplot2::unit(0.1, "lines"),
+            legend.box.margin = ggplot2::margin(t = -0.5, unit = "lines"),
+            legend.margin = ggplot2::margin(t = 0),
+            legend.position = "bottom",
+            plot.title.position = "plot"
         )
 }
 ```
@@ -392,18 +424,26 @@ theme_quarto <- function(font_title = font_base_regular,
 #| fig-align: center
 
 penguins |>
-  filter(!is.na(sex)) |>
-  mutate(lbl_facet = recode_factor(sex, `male` = "Male", `female` = "Female")) |>
-  ggplot(aes(x = flipper_length_mm, y = bill_length_mm,
-             color = species, shape = species)) +
-  geom_point(size = 3) +
-  geom_smooth(method = "lm", se = FALSE) +
-  scale_color_manual(values = c(color_accent, color_accent2, color_accent3)) +
-  facet_wrap(~lbl_facet) +
-  labs(x = "Flipper Length (mm)", y = "Bill Length (mm)") +
-  theme_quarto() +
-  theme(legend.position = c(0.9, 0.1))
-       
+    filter(!is.na(sex)) |>
+    mutate(
+        lbl_facet = recode_factor(sex, `male` = "Male", `female` = "Female")
+    ) |>
+    ggplot(
+        aes(
+            x = flipper_length_mm,
+            y = bill_length_mm,
+            color = species,
+            shape = species
+        )
+    ) +
+    geom_point(size = 3) +
+    geom_smooth(method = "lm", se = FALSE) +
+    scale_color_manual(values = c(color_accent, color_accent2, color_accent3)) +
+    facet_wrap(~lbl_facet) +
+    labs(x = "Flipper Length (mm)", y = "Bill Length (mm)") +
+    theme_quarto() +
+    theme(legend.position = c(0.9, 0.1))
+
 ```
 
 This is a `facet_wrap` example with `penguins` dataset.
@@ -417,21 +457,27 @@ This is a `facet_wrap` example with `penguins` dataset.
 #| fig-align: center
 
 penguins |>
-  ggplot(aes(x = flipper_length_mm, y = body_mass_g,
-             color = species, shape = species)) +
-  geom_point(size = 3) +
-  scale_color_manual(values = c(color_accent, color_accent2, color_accent3)) +
-  labs(x = "Flipper Length (mm)", y = "Body Mass (g)") +
-  theme_quarto() +
-  theme(legend.position = c(0.9, 0.1))
+    ggplot(
+        aes(
+            x = flipper_length_mm,
+            y = body_mass_g,
+            color = species,
+            shape = species
+        )
+    ) +
+    geom_point(size = 3) +
+    scale_color_manual(values = c(color_accent, color_accent2, color_accent3)) +
+    labs(x = "Flipper Length (mm)", y = "Body Mass (g)") +
+    theme_quarto() +
+    theme(legend.position = c(0.9, 0.1))
 
 penguins |>
-  ggplot(aes(x = flipper_length_mm, color = species, shape = species)) +
-  geom_density() +
-  scale_color_manual(values = c(color_accent, color_accent2, color_accent3)) +
-  labs(x = "Flipper Length (mm)", y = "Density") +
-  theme_quarto() +
-  theme(legend.position = c(0.9, 0.1))
+    ggplot(aes(x = flipper_length_mm, color = species, shape = species)) +
+    geom_density() +
+    scale_color_manual(values = c(color_accent, color_accent2, color_accent3)) +
+    labs(x = "Flipper Length (mm)", y = "Density") +
+    theme_quarto() +
+    theme(legend.position = c(0.9, 0.1))
 ```
 
 This is an example of `layout-ncol: 2` for two figures.
@@ -445,19 +491,38 @@ options(tinytable_quarto_figure = TRUE)
 
 ```{r}
 tt_sum <- penguins |>
-  filter(!is.na(sex)) |>
-  summarize(across(bill_length_mm:body_mass_g, ~mean(.x, na.rm = TRUE)),
-            .by = c(species, sex)) |>
-  tidyr::pivot_wider(names_from = sex,
-                     values_from = c(bill_length_mm, bill_depth_mm,
-                                     flipper_length_mm, body_mass_g)) |>
-  select(species, ends_with("_male"), ends_with("_female")) |>
-  `colnames<-`(c("", rep(c("Bill Length (mm)", "Bill Depth (mm)",
-                                  "Flipper Length (mm)", "Body Mass (g)"),
-                                times = 4))) |>
-  tt() |>
-  group_tt(j = list("Male" = 2:5, "Female" = 6:9)) |>
-  format_tt(j = c(2:9), digits = 4)
+    filter(!is.na(sex)) |>
+    summarize(
+        across(bill_length_mm:body_mass_g, ~mean(.x, na.rm = TRUE)),
+        .by = c(species, sex)
+    ) |>
+    tidyr::pivot_wider(
+        names_from = sex,
+        values_from = c(
+            bill_length_mm,
+            bill_depth_mm,
+            flipper_length_mm,
+            body_mass_g
+        )
+    ) |>
+    select(species, ends_with("_male"), ends_with("_female")) |>
+    `colnames<-`(
+        c(
+            "",
+            rep(
+                c(
+                    "Bill Length (mm)",
+                    "Bill Depth (mm)",
+                    "Flipper Length (mm)",
+                    "Body Mass (g)"
+                ),
+                times = 4
+            )
+        )
+    ) |>
+    tt() |>
+    group_tt(j = list("Male" = 2:5, "Female" = 6:9)) |>
+    format_tt(j = c(2:9), digits = 4)
 ```
 
 :::: {.complex-anim repeat=3}
@@ -474,8 +539,7 @@ tt_sum
 
 ```{r}
 tt_sum |>
-  style_tt(i = 2, background = color_accent,
-           color = "white", bold = TRUE)
+    style_tt(i = 2, background = color_accent, color = "white", bold = TRUE)
 ```
 
 :::
@@ -490,28 +554,32 @@ tt_sum |>
 
 ```{r}
 cm <- c(
-  "speciesChinstrap" = "Chinstrap",
-  "speciesGentoo" = "Gentoo",
-  "sexmale" = "Male",
-  "year" = "Year"
+    "speciesChinstrap" = "Chinstrap",
+    "speciesGentoo" = "Gentoo",
+    "sexmale" = "Male",
+    "year" = "Year"
 )
 
 gm <- tibble(
-  raw = c("nobs", "r2"),
-  clean = c("Observations", "$R^2$"),
-  fmt = c(0, 3)
+    raw = c("nobs", "r2"),
+    clean = c("Observations", "$R^2$"),
+    fmt = c(0, 3)
 )
 
-list("(1)" = lm(bill_length_mm ~ species, data = penguins),
-     "(2)" = lm(bill_length_mm ~ species + sex, data = penguins),
-     "(3)" = lm(bill_length_mm ~ species + sex + year, data = penguins),
-     "(4)" = lm(body_mass_g ~ species, data = penguins),
-     "(5)" = lm(body_mass_g ~ species + sex, data = penguins),
-     "(6)" = lm(body_mass_g ~ species + sex + year, data = penguins)) |>
-  modelsummary(stars = c("+" = .1, "*" = .05, "**" = .01),
-               coef_map = cm,
-               gof_map = gm) |>
-  group_tt(j = list("Bill Length (mm)" = 2:4, "Body Mass (g)" = 5:7))
+list(
+    "(1)" = lm(bill_length_mm ~ species, data = penguins),
+    "(2)" = lm(bill_length_mm ~ species + sex, data = penguins),
+    "(3)" = lm(bill_length_mm ~ species + sex + year, data = penguins),
+    "(4)" = lm(body_mass_g ~ species, data = penguins),
+    "(5)" = lm(body_mass_g ~ species + sex, data = penguins),
+    "(6)" = lm(body_mass_g ~ species + sex + year, data = penguins)
+) |>
+    modelsummary(
+        stars = c("+" = .1, "*" = .05, "**" = .01),
+        coef_map = cm,
+        gof_map = gm
+    ) |>
+    group_tt(j = list("Bill Length (mm)" = 2:4, "Body Mass (g)" = 5:7))
 ```
 
 

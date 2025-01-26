@@ -9,6 +9,12 @@ author:
     affiliations: Your Institution
 date: today
 date-format: long
+brand:
+  typography: 
+    fonts: 
+      - family: Roboto
+        weight: [light, bold]
+        source: google
 ---
 
 # Section Slide as Header Level 1

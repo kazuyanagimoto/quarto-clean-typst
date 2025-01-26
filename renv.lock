@@ -26,7 +26,7 @@
     },
     "Matrix": {
       "Package": "Matrix",
-      "Version": "1.7-1",
+      "Version": "1.7-2",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
@@ -39,7 +39,7 @@
         "stats",
         "utils"
       ],
-      "Hash": "5122bb14d8736372411f955e1b16bc8a"
+      "Hash": "f6a81550f166acbe2cd5229e9ca079b9"
     },
     "R6": {
       "Package": "R6",
@@ -83,7 +83,7 @@
     },
     "bayestestR": {
       "Package": "bayestestR",
-      "Version": "0.15.0",
+      "Version": "0.15.1",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
@@ -95,7 +95,7 @@
         "stats",
         "utils"
       ],
-      "Hash": "d7c05ccb9d60d87dbbe8b4042c385f01"
+      "Hash": "0d24e07b3a2c50fb6221787c9fd4f69a"
     },
     "bslib": {
       "Package": "bslib",
@@ -190,7 +190,7 @@
     },
     "datawizard": {
       "Package": "datawizard",
-      "Version": "0.13.0",
+      "Version": "1.0.0",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
@@ -199,7 +199,7 @@
         "stats",
         "utils"
       ],
-      "Hash": "303aeace6f3554ce2d62e5d1df6fcd6e"
+      "Hash": "8a37ad13b9b0db70bf32d6eb2fc0a2aa"
     },
     "digest": {
       "Package": "digest",
@@ -237,13 +237,13 @@
     },
     "evaluate": {
       "Package": "evaluate",
-      "Version": "1.0.1",
+      "Version": "1.0.3",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
         "R"
       ],
-      "Hash": "3fd29944b231036ad67c3edb32e02201"
+      "Hash": "e9651417729bbe7472e32b5027370e79"
     },
     "fansi": {
       "Package": "fansi",
@@ -386,7 +386,7 @@
     },
     "insight": {
       "Package": "insight",
-      "Version": "1.0.0",
+      "Version": "1.0.1",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
@@ -395,7 +395,7 @@
         "stats",
         "utils"
       ],
-      "Hash": "bee0c3abb5eea6c4170ea2a7c334893f"
+      "Hash": "3d10ce60ec5a72db736b7f6ef0670858"
     },
     "isoband": {
       "Package": "isoband",
@@ -588,7 +588,7 @@
     },
     "parameters": {
       "Package": "parameters",
-      "Version": "0.24.0",
+      "Version": "0.24.1",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
@@ -601,11 +601,11 @@
         "stats",
         "utils"
       ],
-      "Hash": "42e4417823caf935fcc47a88ad4706e7"
+      "Hash": "1cff6878a759914640ff9ed51dd745a2"
     },
     "performance": {
       "Package": "performance",
-      "Version": "0.12.4",
+      "Version": "0.13.0",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
@@ -616,11 +616,11 @@
         "stats",
         "utils"
       ],
-      "Hash": "64e61921ea6b2a4d76c81290d5ecce25"
+      "Hash": "35de0c9474563ca8054029abb0b6e72c"
     },
     "pillar": {
       "Package": "pillar",
-      "Version": "1.10.0",
+      "Version": "1.10.1",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
@@ -632,7 +632,7 @@
         "utils",
         "vctrs"
       ],
-      "Hash": "101ca350beea21261a15ba169d7a8513"
+      "Hash": "8b16b6097daef84cd3c40a6a7c5c9d86"
     },
     "pkgconfig": {
       "Package": "pkgconfig",
@@ -681,14 +681,14 @@
     },
     "rlang": {
       "Package": "rlang",
-      "Version": "1.1.4",
+      "Version": "1.1.5",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
         "R",
         "utils"
       ],
-      "Hash": "3eec01f8b1dee337674b2e34ab1f9bc1"
+      "Hash": "724dcc1490cd7071ee75ca2994a5446e"
     },
     "rmarkdown": {
       "Package": "rmarkdown",
@@ -881,18 +881,14 @@
     },
     "tinytable": {
       "Package": "tinytable",
-      "Version": "0.5.0.5",
-      "Source": "GitHub",
-      "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteRepo": "tinytable",
-      "RemoteUsername": "vincentarelbundock",
-      "RemoteSha": "4be6e6b88d8c390901326366cbb90e1474839721",
+      "Version": "0.7.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
       "Requirements": [
         "R",
         "methods"
       ],
-      "Hash": "a82ac32db4157be4d294554af2d14f6f"
+      "Hash": "a5bc91e1e04d56506b9bca09cc46b157"
     },
     "tinytex": {
       "Package": "tinytex",
@@ -952,7 +948,7 @@
     },
     "xfun": {
       "Package": "xfun",
-      "Version": "0.49",
+      "Version": "0.50",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
@@ -961,7 +957,7 @@
         "stats",
         "tools"
       ],
-      "Hash": "8687398773806cfff9401a2feca96298"
+      "Hash": "44ab88837d3f8dfc66a837299b887fa6"
     },
     "yaml": {
       "Package": "yaml",
