@@ -1,0 +1,102 @@
+---
+title: A title
+subtitle: A subtitle
+format: clean-typst
+author:
+  - name: Your Name
+    orcid: 0000-0000-0000-0000
+    email: alias@email.com
+    affiliations: Your Institution
+date: today
+date-format: long
+brand:
+  typography: 
+    fonts: 
+      - family: Montserrat
+        source: google
+      - family: Josefin Sans
+        source: google
+      - family: Fira Code
+        source: bunny
+    base: Montserrat
+    headings:
+      family: Josefin Sans
+      weight: semi-bold
+    monospace:
+      family: Fira Code
+      size: 0.9em
+  color:
+    palette:
+      black: "#131516"
+      green: "#009F8C"
+      pink: "#B75C9D"
+    foreground: black
+    primary: green
+    secondary: pink
+  defaults: 
+    clean-typst:
+      title-slide:
+        title:
+          size: 1.8em
+          weight: 600
+        subtitle:
+          size: 1em
+---
+
+# Section Slide as Header Level 1
+
+## Slide Title as Header Level 2
+
+### Subtitle as Header Level 3
+
+You can put any content here, including text, images, tables, code blocks, etc.
+
+- first unorder list item
+    - A sub item
+
+1. first ordered list item
+    1. A sub item
+
+Next, we'll brief review some theme-specific components.
+
+- Note that _all_ of the standard Quarto + Typst
+[features](https://quarto.org/docs/output-formats/typst.html) 
+can be used with this theme
+- Also, all the [Touying](https://touying-typ.github.io) features can be used by **Typst native code**
+
+## Additional Theme Classes
+
+### Some extra things you can do with the clean theme
+
+Special classes for emphasis
+
+- `.alert` class for default emphasis, e.g. [the second accent color]{.alert}.
+- `.fg` class for custom color, e.g. [with `options='fill: rgb("#5D639E")'`]{.fg options='fill: rgb("#5D639E")'}.
+- `.bg` class for custom background, e.g. [with the default color]{.bg}.
+
+Cross-references
+
+- `.button` class provides a Beamer-like button, e.g.
+[[Summary]{.button}](#sec-summary)
+
+
+## Summary {#sec-summary}
+
+### A Minimalistic Presentation Theme for Quarto + Typst with Touying
+
+Add the theme to an existing project
+
+```{.bash}
+quarto install extension kazuyanagimoto/quarto-clean-typst
+```
+
+... or, create a new project using this slide deck as a lean template
+
+```{.bash}
+quarto use template kazuyanagimoto/quarto-clean-typst
+```
+
+
+### Longer Demo
+
+For a more comprehensive demo, see the [demo slides](https://kazuyanagimoto.com/quarto-slides-typst/slides/quarto-clean-typst/clean.pdf) and [code](https://github.com/kazuyanagimoto/quarto-slides-typst/blob/main/slides/quarto-clean-typst/clean.qmd)!

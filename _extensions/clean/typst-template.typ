@@ -4,7 +4,7 @@
 #let new-section-slide(self: none, body)  = touying-slide-wrapper(self => {
   let main-body = {
     set align(left + horizon)
-    set text(size: 2.5em, fill: self.colors.primary, weight: "bold")
+    set text(size: 2em, fill: self.colors.primary, weight: "bold", font: self.store.font-family-heading)
     utils.display-current-heading(level: 1)
   }
   self = utils.merge-dicts(
@@ -29,7 +29,7 @@
       size: 1.4em,
       fill: self.colors.neutral-darkest,
       weight: self.store.font-weight-heading,
-      font: self.store.font-heading,
+      font: self.store.font-family-heading,
     )
     utils.call-or-display(self, self.store.header)
   }
@@ -60,20 +60,21 @@
   header: utils.display-current-heading(level: 2),
   footer: [],
   font-size: 20pt,
-  font-heading: ("Roboto"),
-  font-body: ("Roboto"),
+  font-family-heading: ("Roboto"),
+  font-family-body: ("Roboto"),
   font-weight-heading: "light",
   font-weight-body: "light",
   font-weight-title: "light",
+  font-weight-subtitle: "light",
   font-size-title: 1.4em,
   font-size-subtitle: 1em,
-  color-jet: "131516",
-  color-accent: "107895",
-  color-accent2: "9a2515",
+  color-jet: rgb("131516"),
+  color-accent: rgb("107895"),
+  color-accent2: rgb("9a2515"),
   ..args,
   body,
 ) = {
-  set text(size: font-size, font: font-body, fill: rgb(color-jet),
+  set text(size: font-size, font: font-family-body, fill: color-jet,
            weight: font-weight-body)
 
   show: touying-slides.with(
@@ -118,7 +119,7 @@
           set text(
             size: 1.1em,
             fill: self.colors.primary,
-            font: font-body,
+            font: font-family-body,
             weight: "light",
             style: "italic",
           )
@@ -132,20 +133,22 @@
       alert: (self: none, it) => text(fill: self.colors.secondary, it),
     ),
     config-colors(
-      primary: rgb(color-accent),
-      secondary: rgb(color-accent2),
+      primary: color-accent,
+      secondary: color-accent2,
       neutral-lightest: rgb("#ffffff"),
-      neutral-darkest: rgb(color-jet),
+      neutral-darkest: color-jet,
     ),
     // save the variables for later use
     config-store(
       header: header,
       footer: footer,
-      font-heading: font-heading,
+      font-family-heading: font-family-heading,
+      font-family-body: font-family-body,
       font-size-title: font-size-title,
       font-size-subtitle: font-size-subtitle,
-      font-weight-title: font-weight-title,
       font-weight-heading: font-weight-heading,
+      font-weight-title: font-weight-title,
+      font-weight-subtitle: font-weight-subtitle,
       ..args,
     ),
   )
@@ -164,6 +167,7 @@
       [#text(size: self.store.font-size-title,
              fill: self.colors.neutral-darkest,
              weight: self.store.font-weight-title,
+             font: self.store.font-family-heading,
              info.title)
        #if info.subtitle != none {
         linebreak()
@@ -171,6 +175,8 @@
         text(size: self.store.font-size-subtitle,
              style: "italic",
              fill: self.colors.primary,
+             weight: self.store.font-weight-subtitle,
+             font: self.store.font-family-body,
              info.subtitle)
       }]
     )

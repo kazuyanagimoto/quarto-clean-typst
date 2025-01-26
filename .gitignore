@@ -1,7 +1,7 @@
 .DS_Store
 *.pdf
 /.luarc.json
-/template.typ
+/template*.typ
 README.html
 .Rproj.user
 docs/
