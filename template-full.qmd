@@ -234,41 +234,25 @@ format:
 
 
 
-## YAML Settings
-
-### Fonts
+## `brand.yml` Support
 
 ```yaml
-format:
-  clean-typst:
-    font-size: 20pt
-    font-heading: Josefin Sans
-    font-body: Montserrat
-    font-weight-heading: bold
-    font-weight-body: normal
-    font-size-title: 2.5em
-    font-size-subtitle: 1.5em
+brand:
+  typography: 
+    base: Montserrat
+    headings:
+      family: Josefin Sans
+      weight: semi-bold
+    color:
+      palette:
+        green: "#009F8C"
+        pink: "#B75C9D"
+      primary: green
+      secondary: pink
 ```
 
-- `font-size` is the default font size for the slide. Other font sizes are relative to this
-- `font-heading` and `font-body` are the font families for headings and body text
-- Since the title slide is important, size of the title `font-size-title` and `font-size-subtitle` can be set separately
-
-## YAML Settings
-
-### Colors
-
-```yaml
-format:
-  clean-typst:
-    color-jet: "#272822"
-    color-accent: "$accent$"
-    color-accent2: "$accent2$"
-```
-
-- `color-jet` is the main color for text. `#000000` is too dark, and the default is `#131516`
-- `color-accent` is used for the subtitle of the slide, buttons, lists, and the link colors
-- `color-accent2` is used for the alert colors
+- This template supports [`brand.yml`](https://posit-dev.github.io/brand-yml/) for typography and color settings
+- See [`template-brand.qmd`](https://github.com/kazuyanagimoto/quarto-clean-typst/blob/main/template-brand.qmd) for the full example
 
 # Animations
 
