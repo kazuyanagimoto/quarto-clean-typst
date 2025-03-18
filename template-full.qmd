@@ -477,7 +477,7 @@ options(tinytable_quarto_figure = TRUE)
 tt_sum <- penguins |>
     filter(!is.na(sex)) |>
     summarize(
-        across(bill_length_mm:body_mass_g, ~mean(.x, na.rm = TRUE)),
+        across(bill_length_mm:body_mass_g, ~ mean(.x, na.rm = TRUE)),
         .by = c(species, sex)
     ) |>
     tidyr::pivot_wider(
@@ -527,6 +527,8 @@ tt_sum |>
 ```
 
 :::
+
+{{< v 1em >}}
 
 - You can easily create Typst tables by [`tinytable`](https://vincentarelbundock.github.io/tinytable/) {{< pause >}}
 - You can [highlight]{.alert} by `tinytable::style_tt()`! {{< pause >}}

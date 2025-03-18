@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+set -eu
+
+# Source shared variables/functions from setup.
+. "$(dirname "${BASH_SOURCE[0]}")/setup"
+
+# If no target given or "help" is requested, print usage and exit.
+if (( $# < 1 )) || [[ "${1:-}" == "help" ]]; then
+  echo "package TARGET"
+  echo ""
+  echo "Packages all relevant files into a directory named '<name>/<version>'"
+  echo "at TARGET. If TARGET is set to @local or @preview, the local Typst package"
+  echo "directory will be used so that the package gets installed for local use."
+  echo "The name and version are read from 'typst.toml' in the project root."
+  echo ""
+  echo "Local package prefix: \$DATA_DIR/typst/package/local"
+  echo "Local preview package prefix: \$DATA_DIR/typst/package/preview"
+  exit 1
+fi
+
+# Determine the target installation directory.
+TARGET="$(resolve-target "${1:?Missing target path, @local or @preview}")"
+echo "Install dir: $TARGET"
+
+# Define the list of files to include.
+files=(
+  "template/main.typ"
+  "typst.toml"
+  "lib.typ"
+  "LICENSE"
+  "README.md"
+  "thumbnail.png"
+)
+
+# Create a temporary directory for collecting package files.
+TMP="$(mktemp -d)"
+
+# Assume ROOT is the current directory.
+ROOT="$(pwd)"
+
+# Copy each listed file preserving its relative directory structure.
+for f in "${files[@]}"; do
+  mkdir -p "$TMP/$(dirname "$f")"
+  cp -r "$TYPST_ROOT/$f" "$TMP/$f"
+done
+
+# Compute the final target path including package prefix and version.
+TARGET="${TARGET:?}/${PKG_PREFIX:?}/${VERSION:?}"
+echo "Packaged to: $TARGET"
+if rm -r "${TARGET:?}" 2>/dev/null; then
+  echo "Overwriting existing version."
+fi
+mkdir -p "$TARGET"
+
+# Include hidden files by setting dotglob and move only the packaged files.
+shopt -s dotglob
+mv "$TMP"/* "$TARGET"
