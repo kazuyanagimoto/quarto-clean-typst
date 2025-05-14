@@ -1,4 +1,4 @@
-#import "@preview/touying:0.5.3": *
+#import "@preview/touying:0.6.1": *
 #import "@preview/fontawesome:0.5.0": *
 
 #let new-section-slide(self: none, body)  = touying-slide-wrapper(self => {
@@ -9,7 +9,7 @@
   }
   self = utils.merge-dicts(
     self,
-    config-page(margin: (left: 2em, top: -0.25em)),
+    config-page(margin: (left: 1em, top: 0em)),
   ) 
   touying-slide(self: self, main-body)
 })
