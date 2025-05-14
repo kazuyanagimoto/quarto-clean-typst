@@ -13,3 +13,4 @@ README.md
 touying-quarto-clean/
 scripts/
 Justfile
+air.toml
