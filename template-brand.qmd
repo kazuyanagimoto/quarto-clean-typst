@@ -17,7 +17,7 @@ brand:
       - family: Josefin Sans
         source: google
       - family: Fira Code
-        source: bunny
+        source: google
     base: Montserrat
     headings:
       family: Josefin Sans

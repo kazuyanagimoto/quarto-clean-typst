@@ -12,12 +12,12 @@
   $if(sansfont)$
     font-family-heading: ("$sansfont$",),
   $elseif(brand.typography.headings.family)$
-    font-family-heading: ("$brand.typography.headings.family$",),
+    font-family-heading: $brand.typography.headings.family$,
   $endif$
   $if(mainfont)$
     font-family-body: ("$mainfont$",),
   $elseif(brand.typography.base.family)$
-    font-family-body: ("$brand.typography.base.family$",),
+    font-family-body: $brand.typography.base.family$,
   $endif$
   $if(font-weight-heading)$
     font-weight-heading: "$font-weight-heading$",
