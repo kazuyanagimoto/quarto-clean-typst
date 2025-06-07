@@ -14,7 +14,12 @@ brand:
     fonts: 
       - family: Roboto
         weight: [light, bold]
+        style: [normal, italic]
         source: google
+    base:
+      family: Roboto
+      weight: light
+    headings: Roboto
 ---
 
 # Section Slide as Header Level 1

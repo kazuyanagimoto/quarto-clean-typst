@@ -14,11 +14,16 @@ brand:
     fonts: 
       - family: Montserrat
         source: google
+        weight: [light, bold]
+        style: [normal, italic]
       - family: Josefin Sans
+        weight: semi-bold
         source: google
       - family: Fira Code
         source: google
-    base: Montserrat
+    base:
+      family: Montserrat
+      weight: light
     headings:
       family: Josefin Sans
       weight: semi-bold
