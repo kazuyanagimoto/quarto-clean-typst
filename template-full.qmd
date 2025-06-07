@@ -29,6 +29,7 @@ knitr:
     fig.align: center
     dev: svg
 ---
+
 # Section Slide as Header Level 1
 
 ## Slide Title as Header Level 2
@@ -263,16 +264,28 @@ Touying's [simple animations](https://touying-typ.github.io/docs/dynamic/simple)
 
 {{< pause >}}
 
-**Animations in Lists**
+This line appears after a pause.
 
-Simple animations can be used in lists
+{{< meanwhile >}}
+
+This line appears meanwhile.
+
+. . .
+
+As Reveal.js, you can use `. . .` for a pause in the slide.
+
+## Animations in Lists
+
+**Pause in Lists**
+
+Simple animations `{{{< pause >}}}` can be used in lists
 
 - First {{< pause >}}
 - Second
 
-**Incremental Class** (_experimental_)
+**Incremental Class**
 
-As revealjs, you can use `.incremental` class
+As Reveal.js, you can use `.incremental` class
 
 ::: {.incremental}
 
@@ -527,7 +540,7 @@ tt_sum |>
 
 - You can easily create Typst tables by [`tinytable`](https://vincentarelbundock.github.io/tinytable/) {{< pause >}}
 - You can [highlight]{.alert} by `tinytable::style_tt()`! {{< pause >}}
-- Read the [GitHub Issue](https://github.com/vincentarelbundock/tinytable/issues/337) and see `theme_slides()` for the table without captions
+- Set `options(tinytable_quarto_figure = TRUE)` to create figures (tables) without captions {{< pause >}}
 
 ::::
 
