@@ -13,7 +13,7 @@ Click the image below to see a long
 Code is available
 [here](https://github.com/kazuyanagimoto/quarto-clean-typst/blob/main/template-full.qmd).
 
-[![Demo](static/img/thumbnail.png)](https://kazuyanagimoto.com/quarto-clean-typst/template-full.pdf)
+[![](static/img/thumbnail.png)](https://kazuyanagimoto.com/quarto-clean-typst/template-full.pdf)
 
 ## Install
 

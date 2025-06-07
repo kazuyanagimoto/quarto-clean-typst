@@ -1,3 +1,8 @@
+function HorizontalRule(el)
+  -- Ignore horizontal rules in Typst format
+  return pandoc.RawBlock("typst", "---")
+end
+
 function Div(el)
   if quarto.doc.is_format("typst") and el.classes:includes("incremental") then
     local modified_items = {}
@@ -20,4 +25,14 @@ function Div(el)
     return pandoc.Div(modified_items, el.attr)
   end
 end
-  
+
+function Para(el)
+  if quarto.doc.is_format("typst") then
+    local t = pandoc.utils.stringify(el)
+    
+    -- `. . .` as a pause
+    if t:match("^%. ?%. ?%.$") then
+      return pandoc.RawBlock("typst", "#pause")
+    end
+  end
+end
