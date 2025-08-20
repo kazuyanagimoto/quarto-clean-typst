@@ -1,16 +1,13 @@
 #import "@preview/touying:0.6.1": *
 #import "@preview/fontawesome:0.5.0": *
 
-#let new-section-slide(self: none, body)  = touying-slide-wrapper(self => {
+#let new-section-slide(self: none, body) = touying-slide-wrapper(self => {
   let main-body = {
     set align(left + horizon)
     set text(size: 2em, fill: self.colors.primary, weight: "bold", font: self.store.font-family-heading)
     utils.display-current-heading(level: 1)
   }
-  self = utils.merge-dicts(
-    self,
-    config-page(margin: (left: 1em, top: 0em)),
-  ) 
+  self = utils.merge-dicts(self, config-page(margin: (left: 1em, top: 0em)))
   touying-slide(self: self, main-body)
 })
 
@@ -43,13 +40,10 @@
   }
 
   // Set the slide
-  let self = utils.merge-dicts(
-    self,
-    config-page(
-      header: header,
-      footer: footer,
-    ),
-  )
+  let self = utils.merge-dicts(self, config-page(
+    header: header,
+    footer: footer,
+  ))
   touying-slide(self: self, config: config, repeat: repeat, setting: setting, composer: composer, ..bodies)
 })
 
@@ -60,8 +54,8 @@
   header: utils.display-current-heading(level: 2),
   footer: [],
   font-size: 20pt,
-  font-family-heading: ("Roboto"),
-  font-family-body: ("Roboto"),
+  font-family-heading: "Roboto",
+  font-family-body: "Roboto",
   font-weight-heading: "light",
   font-weight-body: "light",
   font-weight-title: "light",
@@ -74,31 +68,26 @@
   ..args,
   body,
 ) = {
-  set text(size: font-size, font: font-family-body, fill: color-jet,
-           weight: font-weight-body)
+  set text(size: font-size, font: font-family-body, fill: color-jet, weight: font-weight-body)
 
   show: touying-slides.with(
-    config-page(
-      paper: "presentation-" + aspect-ratio,
-      margin: (top: 4em, bottom: 1.5em, x: 2em),
-    ),
+    config-page(paper: "presentation-" + aspect-ratio, margin: (top: 4em, bottom: 1.5em, x: 2em)),
     config-common(
       slide-fn: slide,
       new-section-slide-fn: new-section-slide,
       handout: handout,
       enable-frozen-states-and-counters: false, // https://github.com/touying-typ/touying/issues/72
       show-hide-set-list-marker-none: true,
-      show-strong-with-alert: false
+      show-strong-with-alert: false,
     ),
     config-methods(
       init: (self: none, body) => {
         show link: set text(fill: self.colors.primary)
         // Unordered List
-        set list(
-          indent: 1em,
-          marker: (text(fill: self.colors.primary)[ #sym.triangle.filled.r ],
-                    text(fill: self.colors.primary)[ #sym.arrow]),
-        )
+        set list(indent: 1em, marker: (
+          text(fill: self.colors.primary, font: "New Computer Modern")[ #sym.triangle.filled.r ],
+          text(fill: self.colors.primary, font: "New Computer Modern")[ #sym.arrow],
+        ))
         // Ordered List
         set enum(
           indent: 1em,
@@ -112,8 +101,8 @@
             let format = ("1.", "i.", "a.").at(calc.min(2, level - 1))
             let result = numbering(format, num)
             text(fill: self.colors.primary, result)
-          }
-        ) 
+          },
+        )
         // Slide Subtitle
         show heading.where(level: 3): title => {
           set text(
@@ -162,24 +151,25 @@
   let info = self.info + args.named()
   let body = {
     set align(left + horizon)
-    block(
-      inset: (y: 1em),
-      [#text(size: self.store.font-size-title,
-             fill: self.colors.neutral-darkest,
-             weight: self.store.font-weight-title,
-             font: self.store.font-family-heading,
-             info.title)
-       #if info.subtitle != none {
+    block(inset: (y: 1em), [#text(
+        size: self.store.font-size-title,
+        fill: self.colors.neutral-darkest,
+        weight: self.store.font-weight-title,
+        font: self.store.font-family-heading,
+        info.title,
+      )
+      #if info.subtitle != none {
         linebreak()
         v(-0.3em)
-        text(size: self.store.font-size-subtitle,
-             style: "italic",
-             fill: self.colors.primary,
-             weight: self.store.font-weight-subtitle,
-             font: self.store.font-family-body,
-             info.subtitle)
-      }]
-    )
+        text(
+          size: self.store.font-size-subtitle,
+          style: "italic",
+          fill: self.colors.primary,
+          weight: self.store.font-weight-subtitle,
+          font: self.store.font-family-body,
+          info.subtitle,
+        )
+      }])
 
     set text(fill: self.colors.neutral-darkest)
 
@@ -189,20 +179,18 @@
       grid(
         columns: (1fr,) * ncols,
         row-gutter: 1.5em,
-        ..info.authors.map(author =>
-            align(left)[
-              #text(size: 1em, weight: "regular")[#author.name]
-              #if author.orcid != [] {
-                show link: set text(size: 0.7em, fill: rgb("a6ce39"))
-                link("https://orcid.org/" + author.orcid.text)[#fa-orcid()]
-              } \
-              #text(size: 0.7em, style: "italic")[
-                #show link: set text(size: 0.9em, fill: self.colors.neutral-darkest)
-                #link("mailto:" + author.email.children.map(email => email.text).join())[#author.email]
-              ] \
-              #text(size: 0.8em, style: "italic")[#author.affiliation]
-            ]
-        )
+        ..info.authors.map(author => align(left)[
+          #text(size: 1em, weight: "regular")[#author.name]
+          #if author.orcid != [] {
+            show link: set text(size: 0.7em, fill: rgb("a6ce39"))
+            link("https://orcid.org/" + author.orcid.text)[#fa-orcid()]
+          } \
+          #text(size: 0.7em, style: "italic")[
+            #show link: set text(size: 0.9em, fill: self.colors.neutral-darkest)
+            #link("mailto:" + author.email.children.map(email => email.text).join())[#author.email]
+          ] \
+          #text(size: 0.8em, style: "italic")[#author.affiliation]
+        ])
       )
     }
 
@@ -210,10 +198,7 @@
       block(if type(info.date) == datetime { info.date.display(self.datetime-format) } else { info.date })
     }
   }
-  self = utils.merge-dicts(
-    self,
-    config-common(freeze-slide-counter: true)
-  )
+  self = utils.merge-dicts(self, config-common(freeze-slide-counter: true))
   touying-slide(self: self, body)
 })
 
@@ -222,15 +207,17 @@
 // Custom Functions
 #let fg = (fill: rgb("e64173"), it) => text(fill: fill, it)
 #let bg = (fill: rgb("e64173"), it) => highlight(
-    fill: fill,
-    radius: 2pt,
-    extent: 0.2em,
-    it
-  )
+  fill: fill,
+  radius: 2pt,
+  extent: 0.2em,
+  it,
+)
 #let _button(self: none, it) = {
-  box(inset: 5pt,
-      radius: 3pt,
-      fill: self.colors.primary)[
+  box(
+    inset: 5pt,
+    radius: 3pt,
+    fill: self.colors.primary,
+  )[
     #set text(size: 0.5em, fill: white)
     #sym.triangle.filled.r
     #it
