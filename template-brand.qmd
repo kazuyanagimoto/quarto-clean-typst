@@ -14,19 +14,19 @@ brand:
     fonts: 
       - family: Montserrat
         source: google
-        weight: [light, bold]
+        weight: [100, 200, 300, 400, 500, 600, 700]
         style: [normal, italic]
       - family: Josefin Sans
-        weight: semi-bold
+        weight: 600
         source: google
       - family: Fira Code
         source: google
     base:
       family: Montserrat
-      weight: light
+      weight: 300
     headings:
       family: Josefin Sans
-      weight: semi-bold
+      weight: 600
     monospace:
       family: Fira Code
       size: 0.9em

@@ -22,12 +22,10 @@ brand:
   typography: 
     fonts: 
       - family: Roboto
-        source: google
-        weight: [light, bold]
+        weight: [100, 200, 300, 400, 500, 600, 700]
         style: [normal, italic]
-    base:
-      family: Roboto
-      weight: light
+        source: google
+    base: Roboto
     headings: Roboto
 knitr:
   opts_chunk: 

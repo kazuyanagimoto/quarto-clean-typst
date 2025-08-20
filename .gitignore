@@ -4,7 +4,7 @@
 /template*.typ
 README.html
 .Rproj.user
-docs/
+_site/
 *_files/
 .vscode/
 

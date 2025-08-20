@@ -13,12 +13,10 @@ brand:
   typography: 
     fonts: 
       - family: Roboto
-        weight: [light, bold]
+        weight: [100, 200, 300, 400, 500, 600, 700]
         style: [normal, italic]
         source: google
-    base:
-      family: Roboto
-      weight: light
+    base: Roboto
     headings: Roboto
 ---
 

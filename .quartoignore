@@ -1,5 +1,5 @@
 _quarto.yml
-docs/
+_site/
 *.Rproj
 static/img/template-full.png
 static/img/thumbnail.png
