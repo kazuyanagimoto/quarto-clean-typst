@@ -56,6 +56,7 @@
   font-size: 20pt,
   font-family-heading: "Roboto",
   font-family-body: "Roboto",
+  font-family-mono: "Fira Code",
   font-weight-heading: "light",
   font-weight-body: "light",
   font-weight-title: "light",
@@ -69,6 +70,7 @@
   body,
 ) = {
   set text(size: font-size, font: font-family-body, fill: color-jet, weight: font-weight-body)
+  show raw: set text(font: font-family-mono)
 
   show: touying-slides.with(
     config-page(paper: "presentation-" + aspect-ratio, margin: (top: 4em, bottom: 1.5em, x: 2em)),
