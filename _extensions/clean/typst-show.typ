@@ -19,6 +19,11 @@
   $elseif(brand.typography.base.family)$
     font-family-body: $brand.typography.base.family$,
   $endif$
+  $if(monofont)$
+    font-family-mono: ("$monofont$",),
+  $elseif(brand.typography.monospace.family)$
+    font-family-mono: ("$brand.typography.monospace.family$",),
+  $endif$
   $if(font-weight-heading)$
     font-weight-heading: "$font-weight-heading$",
   $elseif(brand.typography.headings.weight)$

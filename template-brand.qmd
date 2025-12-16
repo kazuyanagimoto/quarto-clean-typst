@@ -19,7 +19,8 @@ brand:
       - family: Josefin Sans
         weight: 600
         source: google
-      - family: Fira Code
+      - family: JetBrains Mono
+        weight: [100, 200, 300, 400, 500, 600, 700]
         source: google
     base:
       family: Montserrat
@@ -28,7 +29,7 @@ brand:
       family: Josefin Sans
       weight: 600
     monospace:
-      family: Fira Code
+      family: JetBrains Mono
       size: 0.9em
   color:
     palette:
@@ -92,7 +93,7 @@ Cross-references
 Add the theme to an existing project
 
 ```{.bash}
-quarto install extension kazuyanagimoto/quarto-clean-typst
+quarto install extension kazuyanagimoto/quarto-clean-typst 
 ```
 
 ... or, create a new project using this slide deck as a lean template

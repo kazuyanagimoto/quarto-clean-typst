@@ -1,5 +1,5 @@
 #import "@preview/touying:0.6.1": *
-#import "@preview/fontawesome:0.5.0": *
+#import "@preview/fontawesome:0.6.0": *
 
 #let new-section-slide(self: none, body) = touying-slide-wrapper(self => {
   let main-body = {
