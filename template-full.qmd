@@ -7,8 +7,8 @@ image: static/img/thumbnail.svg
 author:
   - name: Kazuharu Yanagimoto
     orcid: 0009-0007-1967-8304
-    email: kazuharu.yanagimoto@cemfi.edu.es
-    affiliations: CEMFI
+    email: yanagimoto@econ.kobe-u.ac.jp
+    affiliations: Kobe University
 format:
   clean-typst:
     bibliographystyle: "chicago-author-date"
