@@ -25,8 +25,14 @@ brand:
         weight: [100, 200, 300, 400, 500, 600, 700]
         style: [normal, italic]
         source: google
+      - family: Fira Code
+        weight: [100, 200, 300, 400, 500, 600, 700]
+        source: google
     base: Roboto
     headings: Roboto
+    monospace:
+      family: Fira Code
+      size: 0.9em
 knitr:
   opts_chunk: 
     fig.align: center
