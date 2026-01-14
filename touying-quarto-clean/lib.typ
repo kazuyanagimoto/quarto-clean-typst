@@ -35,8 +35,10 @@
     show: pad.with(.4em)
     set text(fill: self.colors.neutral-darkest, size: .8em)
     utils.call-or-display(self, self.store.footer)
-    h(1fr)
-    context utils.slide-counter.display() + " / " + utils.last-slide-number
+    if self.store.at("show-slide-numbers", default: true) {
+      h(1fr)
+      context utils.slide-counter.display() + " / " + utils.last-slide-number
+    }
   }
 
   // Set the slide
@@ -53,6 +55,7 @@
   handout: false,
   header: utils.display-current-heading(level: 2),
   footer: [],
+  show-slide-numbers: true,
   font-size: 20pt,
   font-family-heading: "Roboto",
   font-family-body: "Roboto",
@@ -133,6 +136,7 @@
     config-store(
       header: header,
       footer: footer,
+      show-slide-numbers: show-slide-numbers,
       font-family-heading: font-family-heading,
       font-family-body: font-family-body,
       font-size-title: font-size-title,
