@@ -1,2 +1,2 @@
-#import "@preview/touying-quarto-clean:0.1.3": *
+#import "@preview/touying-quarto-clean:0.1.4": *
 

@@ -3,6 +3,9 @@
   $if(handout)$
     handout: true,
   $endif$
+  $if(hide-slide-numbers)$
+    hide-slide-numbers: true,
+  $endif$
   // Typography ---------------------------------------------------------------
   $if(fontsize)$
     font-size: $fontsize$,

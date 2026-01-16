@@ -1,6 +1,4 @@
-#import "@preview/touying-quarto-clean:0.1.3": *
-
-#show: clean-theme.with()
+#import "@preview/touying-quarto-clean:0.1.4": *
 
 #title-slide(
   title: [A title],

@@ -65,6 +65,7 @@ end
 local function readEnvsAndCommands(meta)
   readEnvironments(meta)
   readCommands(meta)
+  return meta
 end
 
 local function endTypstBlock(blocks)
