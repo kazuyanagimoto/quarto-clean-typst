@@ -20,7 +20,7 @@ jobs:
         uses: quarto-dev/quarto-actions/setup@v2
       
       - name: Install Dependencies
-        run: sudo apt install -y libpng-dev libfreetype6-dev
+        run: sudo apt update && sudo apt install -y libpng-dev libfreetype6-dev
 
       - name: Install R
         uses: r-lib/actions/setup-r@v2          
