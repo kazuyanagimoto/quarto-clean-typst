@@ -65,12 +65,6 @@ end
 local function readEnvsAndCommands(meta)
   readEnvironments(meta)
   readCommands(meta)
-  
-  -- Set default for show-slide-numbers if not defined
-  if meta['show-slide-numbers'] == nil then
-    meta['show-slide-numbers'] = true
-  end
-  
   return meta
 end
 

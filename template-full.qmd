@@ -13,7 +13,6 @@ format:
   clean-typst:
     bibliographystyle: "chicago-author-date"
     include-in-header: "custom.typ"
-    show-slide-numbers: true
     commands: [small-cite]
 execute: 
   echo: false
@@ -244,7 +243,7 @@ format:
   - `commands` in YAML is for inline elements `[]{.foo}`
 - `[text]{.foo options="opts"}` is converted to `#foo(opts)[text]` internally
 - If you want to use `self` as an argument, you can use `touying-fn-wrapper()`
-- Slide numbers can be removed by setting `show-slide-numbers: false`
+- Slide numbers can be removed by setting `hide-slide-numbers: true`
 
 
 ## `brand.yml` Support
