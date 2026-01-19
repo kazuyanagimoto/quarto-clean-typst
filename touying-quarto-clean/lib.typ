@@ -155,6 +155,9 @@
   ..args,
 ) = touying-slide-wrapper(self => {
   let info = self.info + args.named()
+
+  set document(title: info.title)
+
   let body = {
     set align(left + horizon)
     block(inset: (y: 1em), [#text(
