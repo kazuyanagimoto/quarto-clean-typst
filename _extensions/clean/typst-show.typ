@@ -1,3 +1,11 @@
+// PDF Metadata ----------------------------------------------------------------
+#set document(
+  $if(title)$ title: [$title$], $endif$
+  $if(by-author)$ author: ($for(by-author)$"$it.name.literal$"$sep$, $endfor$), $endif$
+  $if(keywords)$ keywords: ($for(keywords)$"$keywords$"$sep$, $endfor$), $endif$
+)
+
+// Clean Theme -----------------------------------------------------------------
 #show: clean-theme.with(
   aspect-ratio: "16-9",
   $if(handout)$
@@ -68,6 +76,8 @@
     font-size-subtitle: $brand.defaults.clean-typst.title-slide.subtitle.size$,
   $endif$
 )
+
+// Title Slide ----------------------------------------------------------------
 
 #title-slide(
   title: [$title$],
