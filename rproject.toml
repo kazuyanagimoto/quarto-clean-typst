@@ -1,0 +1,18 @@
+[project]
+name = "quarto-clean-typst"
+r_version = "4.6"
+
+repositories = [
+    { alias = "PPM", url = "https://packagemanager.posit.co/cran/latest" }
+]
+
+dependencies = [
+    "knitr",
+    "rmarkdown",
+    "dplyr",
+    "tidyr",
+    "ggplot2",
+    "tinytable",
+    "modelsummary",
+    "showtext",
+]
