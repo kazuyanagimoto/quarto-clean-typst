@@ -5,8 +5,9 @@ static/img/template-full.png
 static/img/thumbnail.png
 static/img/thumbnail.svg
 snapshot.R
-renv.lock
-renv/
+rproject.toml
+rv.lock
+rv/
 .Rprofile
 README.qmd
 README.md

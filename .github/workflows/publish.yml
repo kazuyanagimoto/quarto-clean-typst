@@ -4,8 +4,6 @@ on:
     branches: main
 
 name: Quarto Publish
-env:
-  RENV_PATHS_ROOT: ~/.cache/R/renv
 
 jobs:
   build-deploy:
@@ -18,17 +16,27 @@ jobs:
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
-      
-      - name: Install Dependencies
+
+      - name: Install system dependencies
         run: sudo apt update && sudo apt install -y libpng-dev libfreetype6-dev
 
       - name: Install R
-        uses: r-lib/actions/setup-r@v2          
-
-      - name: Install R Dependencies
-        uses: r-lib/actions/setup-renv@v2
+        uses: r-lib/actions/setup-r@v2
         with:
-          cache-version: 1
+          # Must match `r_version` in rproject.toml / rv.lock so rv resolves the
+          # matching Posit Package Manager binaries.
+          r-version: '4.6'
+
+      # rv (https://github.com/A2-ai/rv) replaces renv. There is no official
+      # setup action yet, so install the latest release via the upstream script
+      # and put it on PATH for the following steps.
+      - name: Install rv
+        run: |
+          curl -sSL https://raw.githubusercontent.com/A2-ai/rv/refs/heads/main/scripts/install.sh | bash
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+
+      - name: Restore R packages with rv
+        run: rv sync
 
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
