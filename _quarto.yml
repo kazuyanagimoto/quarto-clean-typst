@@ -3,3 +3,6 @@ project:
   render:
     - "*.qmd"
     - "!static/"
+    # The rv library ships .qmd vignettes (e.g. ggplot2's), which the glob above
+    # would otherwise pick up and try to execute.
+    - "!rv/"
