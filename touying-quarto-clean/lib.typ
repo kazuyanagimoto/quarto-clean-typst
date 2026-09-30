@@ -78,7 +78,9 @@
   ..args,
   body,
 ) = {
-  set text(size: font-size, font: font-family-body, fill: color-jet, weight: font-weight-body)
+  // The body text colour is set in `init` from `self.colors.neutral-darkest`,
+  // so a `config-colors` passed through `..args` also recolours the body.
+  set text(size: font-size, font: font-family-body, weight: font-weight-body)
   show raw: set text(font: font-family-mono)
 
   show: touying-slides.with(
@@ -93,6 +95,8 @@
     ),
     config-methods(
       init: (self: none, body) => {
+        // Body text colour from the merged palette (defaults to `color-jet`).
+        set text(fill: self.colors.neutral-darkest)
         // Seed the colour states (read by `button` / `small-cite`).
         _clean-primary.update(self.colors.primary)
         _clean-foreground.update(self.colors.neutral-darkest)
