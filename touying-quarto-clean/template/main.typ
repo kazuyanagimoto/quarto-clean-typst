@@ -1,4 +1,4 @@
-#import "@preview/touying-quarto-clean:0.2.0": *
+#import "@preview/touying-quarto-clean:0.2.1": *
 
 #title-slide(
   title: [A title],
