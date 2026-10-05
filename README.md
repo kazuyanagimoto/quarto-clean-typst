@@ -18,7 +18,7 @@ Quarto + Reveal.js.
 >   touying-typst:
 >     include-in-header:
 >       text: |
->         #import "@preview/touying-quarto-clean:0.2.0": *
+>         #import "@preview/touying-quarto-clean:0.2.1": *
 >     theme-typst: clean-theme
 > ```
 >

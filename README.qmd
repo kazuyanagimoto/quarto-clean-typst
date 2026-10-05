@@ -19,7 +19,7 @@ Theme design is deeply inspired by Grant McDermott's [Clean theme](https://githu
 >   touying-typst:
 >     include-in-header:
 >       text: |
->         #import "@preview/touying-quarto-clean:0.2.0": *
+>         #import "@preview/touying-quarto-clean:0.2.1": *
 >     theme-typst: clean-theme
 > ```
 >
