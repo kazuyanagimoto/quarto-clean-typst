@@ -7,7 +7,11 @@
 
 // Clean Theme -----------------------------------------------------------------
 #show: clean-theme.with(
-  aspect-ratio: "16-9",
+  $if(aspect-ratio)$
+    aspect-ratio: "$aspect-ratio$",
+  $else$
+    aspect-ratio: "16-9",
+  $endif$
   $if(handout)$
     handout: true,
   $endif$

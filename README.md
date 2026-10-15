@@ -46,3 +46,14 @@ or you can use a Quarto template that bundles a .qmd starter file:
 ``` bash
 quarto use template kazuyanagimoto/quarto-clean-typst
 ```
+
+## Slide aspect ratio
+
+Slides are 16:9 by default. Set `aspect-ratio` to `"4-3"` for 4:3 slides
+(`"16-9"` and `"4-3"` are the supported values):
+
+``` yaml
+format:
+  clean-typst:
+    aspect-ratio: "4-3"
+```
